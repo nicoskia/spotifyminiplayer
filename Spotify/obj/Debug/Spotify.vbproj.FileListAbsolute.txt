@@ -1,0 +1,11 @@
+c:\users\cadsup1\documents\visual studio 2015\Projects\Spotify\Spotify\obj\Debug\Spotify.vbprojResolveAssemblyReference.cache
+c:\users\cadsup1\documents\visual studio 2015\Projects\Spotify\Spotify\obj\Debug\Spotify.vbproj.GenerateResource.Cache
+C:\Users\cadsup1\Documents\Visual Studio 2015\Projects\Spotify\Spotify\bin\Debug\Spotify Mini-Player.exe.config
+C:\Users\cadsup1\Documents\Visual Studio 2015\Projects\Spotify\Spotify\obj\Debug\SpotifyMiniPlayer.Form1.resources
+C:\Users\cadsup1\Documents\Visual Studio 2015\Projects\Spotify\Spotify\obj\Debug\SpotifyMiniPlayer.Resources.resources
+C:\Users\cadsup1\Documents\Visual Studio 2015\Projects\Spotify\Spotify\obj\Debug\Spotify Mini-Player.xml
+C:\Users\cadsup1\Documents\Visual Studio 2015\Projects\Spotify\Spotify\bin\Debug\Spotify Mini-Player.exe
+C:\Users\cadsup1\Documents\Visual Studio 2015\Projects\Spotify\Spotify\bin\Debug\Spotify Mini-Player.pdb
+C:\Users\cadsup1\Documents\Visual Studio 2015\Projects\Spotify\Spotify\bin\Debug\Spotify Mini-Player.xml
+C:\Users\cadsup1\Documents\Visual Studio 2015\Projects\Spotify\Spotify\obj\Debug\Spotify Mini-Player.exe
+C:\Users\cadsup1\Documents\Visual Studio 2015\Projects\Spotify\Spotify\obj\Debug\Spotify Mini-Player.pdb

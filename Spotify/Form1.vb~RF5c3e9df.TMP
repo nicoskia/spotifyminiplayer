@@ -1,0 +1,44 @@
+﻿Public Class Form1
+    Dim MySpotify As New spotify 'for api
+    Dim WindowWidthLockTimer As Integer
+    Dim WindowWidthLockTimerThreshold As Integer
+    Dim MouseButtonDown As Boolean 'true if mouse button is being held down
+
+    Private Sub TimerGetTrack_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerGetTrack.Tick
+        'updates play/pause button
+        If MouseButtonDown = False Then
+            If MySpotify.Paused = True Then
+                If btnPlay.Image IsNot My.Resources.play Then btnPlay.Image = My.Resources.play
+            ElseIf MySpotify.Paused = False Then
+                If btnPlay.Image IsNot My.Resources.pause Then btnPlay.Image = My.Resources.pause
+            End If
+        End If
+    End Sub
+
+
+    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        WindowWidthLockTimerThreshold = 3
+        WindowWidthLockTimer = WindowWidthLockTimerThreshold
+    End Sub
+    Private Sub btnPlay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPlay.Click
+        MySpotify.PlayPause()
+        If MySpotify.Paused = True Then btnPlay.Image = My.Resources.pause
+        If MySpotify.Paused = False Then btnPlay.Image = My.Resources.play
+    End Sub
+    Private Sub btnPlay_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnPlay.DoubleClick
+        Call btnPlay_Click(Me, System.EventArgs.Empty)
+    End Sub
+    Private Sub btnPlay_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnPlay.MouseDown
+        If MySpotify.Paused = True Then btnPlay.Image = My.Resources.play2
+        If MySpotify.Paused = False Then btnPlay.Image = My.Resources.pause2
+        MouseButtonDown = True
+    End Sub
+    Private Sub btnNext_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnNext.MouseDown
+        MySpotify.PlayNext()
+        WindowWidthLockTimer = 0
+    End Sub
+    Private Sub btnPrev_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnPrev.MouseDown
+        MySpotify.PlayPrev()
+        WindowWidthLockTimer = 0
+    End Sub
+End Class
