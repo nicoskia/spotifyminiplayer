@@ -49,6 +49,9 @@
   <PropertyGroup>
     <ApplicationIcon>spotify.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -111,6 +114,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -121,27 +125,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\play.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\play2.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pause.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pause2.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\next.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\prev1.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\next1.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\play6.png" />
@@ -167,6 +150,21 @@
   <ItemGroup>
     <None Include="Resources\spotify.png" />
     <None Include="Resources\spotify %282%29.png" />
+    <None Include="Resources\play1.png" />
+    <None Include="Resources\pause1.png" />
+    <None Include="Resources\next1.png" />
+    <None Include="Resources\prev1.png" />
+    <None Include="Resources\prev2.png" />
+    <None Include="Resources\play2.png" />
+    <None Include="Resources\pause2.png" />
+    <None Include="Resources\next2.png" />
+    <None Include="Resources\volume1.png" />
+    <None Include="Resources\resize1.png" />
+    <None Include="Resources\resize2.png" />
+    <None Include="Resources\minus.png" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\minus2.png" />
+    <None Include="Resources\plus2.png" />
     <Content Include="spotify.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

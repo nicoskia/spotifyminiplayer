@@ -2,8 +2,6 @@
     Dim MySpotify As New spotify 'for api
     Public Form1WindowState As Integer '0 for small, 1 for large, 2 for increasing, 3 for decreasing
     Public ShrinkHeight As Integer 'height of window in idle state
-    Dim WindowWidthLockTimer As Integer
-    Dim WindowWidthLockTimerThreshold As Integer
     Dim MouseHovering As Boolean 'true if mouse is hovering over title
     Dim Artist As String
     Dim TrackName As String
@@ -20,6 +18,9 @@
     Dim tempval As Integer
     Dim tempstring As String
 
+    Public trackLLoc As Point = New Point(92, 11)
+    Public trackRLoc As Point = New Point(355, 13)
+
     Private IsFormBeingDragged As Boolean = False
     Private MouseDownX As Integer
     Private MouseDownY As Integer
@@ -28,19 +29,23 @@
     Public Const SW_SHOW As Integer = 5
     Public Declare Function ShowWindow Lib "user32.dll" (ByVal w As Integer, ByVal nCmdShow As Integer) As Integer
     Private Declare Auto Function FindWindow Lib "user32" (ByVal lpClassName As String, ByVal lpWindowName As String) As IntPtr
-    Private Declare Function IsWindowVisible Lib "user32" Alias "IsWindowVisible" (ByVal w As Long) As Long
-    Private Declare Function IsIconic Lib "user32" Alias "IsIconic" (ByVal w As Long) As Long
-    Private Declare Function IsZoomed Lib "user32" Alias "IsZoomed" (ByVal w As Long) As Long
+    Public Declare Function IsWindowVisible Lib "user32.dll" (ByVal hwnd As IntPtr) As Boolean
+    Public Declare Function IsIconic Lib "user32.dll" (ByVal hwnd As Integer) As Boolean
 
-
-
+    'dropshadow
+    Protected Overrides ReadOnly Property CreateParams() As System.Windows.Forms.CreateParams
+        Get
+            Const DROPSHADOW = &H20000
+            Dim cParam As CreateParams = MyBase.CreateParams
+            cParam.ClassStyle = cParam.ClassStyle Or DROPSHADOW
+            Return cParam
+        End Get
+    End Property
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Me.TopMost = True
 
-        WindowWidthLockTimerThreshold = 3
-        WindowWidthLockTimer = WindowWidthLockTimerThreshold
         HoverLockEnterTimer = 0
         HoverLockThreshold = 3
         JustClickedOpenSpotify = False
@@ -83,10 +88,11 @@
         w = FindWindow("SpotifyMainWindow", vbNullString)
 
         tempstring = MySpotify.Nowplaying
+        'MsgBox(tempstring)
 
-        'find location of hyphen
+        'find location of hyphen ! bad for artists with a hyphen in their name - think it's fixed by adding space
         If MySpotify.Paused = False Then
-            tempval = tempstring.IndexOf("-")
+            tempval = tempstring.IndexOf("- ")
         End If
 
         'detect artist and track name, and assign to labels
@@ -101,7 +107,6 @@
         End If
 
         If JustClickedOpenSpotify = False And MySpotify.IsSpotifyRunning <> 0 And MouseHovering = True And DoNotPerformClick = False And HoverLockEnterTimer = HoverLockThreshold Then
-            WindowWidthLockTimer = 0
             Label1.Text = HoverMsg(2)
             lblTrack.Text = HoverMsg(1)
             'ifplaying
@@ -131,7 +136,7 @@
             MySpotify.ShowSpotify()
         End If
 
-        If lblTrack.Width > 245 Then
+        If lblTrack.Width > 260 Then
             trackRight.Visible = True
         Else
             trackRight.Visible = False
@@ -142,50 +147,87 @@
         'updates play/pause button
         If MouseButtonDown = False Then
             If MySpotify.Paused = True Then
-                If btnPlay.Image IsNot My.Resources.play5 Then btnPlay.Image = My.Resources.play5
+                If btnPlay.Image IsNot My.Resources.play1 Then btnPlay.Image = My.Resources.play1
             ElseIf MySpotify.Paused = False Then
-                If btnPlay.Image IsNot My.Resources.pause5 Then btnPlay.Image = My.Resources.pause5
+                If btnPlay.Image IsNot My.Resources.pause1 Then btnPlay.Image = My.Resources.pause1
             End If
         End If
     End Sub
-
-    Private Sub btnPlay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPlay.Click
+    Private Sub btnPlay_MouseDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPlay.MouseDown
+        If MySpotify.Paused = True Then btnPlay.Image = My.Resources.play1
+        If MySpotify.Paused = False Then btnPlay.Image = My.Resources.pause1
+    End Sub
+    Private Sub btnPlay_MouseUp(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPlay.MouseUp
         MySpotify.PlayPause()
-        If MySpotify.Paused = True Then btnPlay.Image = My.Resources.pause5
-        If MySpotify.Paused = False Then btnPlay.Image = My.Resources.play5
+        If MySpotify.Paused = True Then btnPlay.Image = My.Resources.pause2
+        If MySpotify.Paused = False Then btnPlay.Image = My.Resources.play2
     End Sub
-
     Private Sub btnPlay_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnPlay.DoubleClick
-        Call btnPlay_Click(Me, System.EventArgs.Empty)
+        Call btnPlay_MouseUp(Me, System.EventArgs.Empty)
     End Sub
-
-    'Private Sub btnPlay_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnPlay.MouseDown
-    '   If MySpotify.Paused = True Then btnPlay.Image = My.Resources.play2
-    '   If MySpotify.Paused = False Then btnPlay.Image = My.Resources.pause2
-    '   MouseButtonDown = True
-    'End Sub
+    Private Sub btnPlay_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPlay.MouseEnter
+        If MySpotify.Paused = True Then btnPlay.Image = My.Resources.play2
+        If MySpotify.Paused = False Then btnPlay.Image = My.Resources.pause2
+        MouseButtonDown = True
+    End Sub
+    Private Sub btnPlay_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPlay.MouseLeave
+        If MySpotify.Paused = True Then btnPlay.Image = My.Resources.play1
+        If MySpotify.Paused = False Then btnPlay.Image = My.Resources.pause1
+        MouseButtonDown = True
+    End Sub
+    Private Sub btnNext_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnNext.MouseUp
+        marqueeTimer.Enabled = False
+        If lblTrack.Location <> trackLLoc Then
+            lblTrack.Visible = False
+            lblTrack.Location = trackLLoc
+            lblTrack.Visible = True
+            trackRight.Visible = False
+            trackRight.Location = trackRLoc
+            trackRight.Visible = True
+        End If
+        MySpotify.PlayNext()
+    End Sub
+    Private Sub btnPrev_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnPrev.MouseUp
+        marqueeTimer.Enabled = False
+        lblTrack.Location = trackLLoc
+        trackRight.Location = trackRLoc
+        If lblTrack.Location <> trackLLoc Then
+            lblTrack.Visible = False
+            lblTrack.Location = trackLLoc
+            lblTrack.Visible = True
+            trackRight.Visible = False
+            trackRight.Location = trackRLoc
+            trackRight.Visible = True
+        End If
+        MySpotify.PlayPrev()
+    End Sub
+    Private Sub volDown_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles volDown.MouseDown
+        MySpotify.VolumeDown()
+    End Sub
+    Private Sub volUp_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles volUp.MouseDown
+        MySpotify.VolumeUp()
+    End Sub
 
     Private Sub btnNext_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnNext.MouseDown
-        lblTrack.Location = New Point(92, 13)
-        trackRight.Location = New Point(355, 13)
-        MySpotify.PlayNext()
-        WindowWidthLockTimer = 0
+        btnNext.Image = My.Resources.next1
     End Sub
-
     Private Sub btnPrev_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnPrev.MouseDown
-        lblTrack.Location = New Point(92, 13)
-        trackRight.Location = New Point(355, 13)
-        MySpotify.PlayPrev()
-        WindowWidthLockTimer = 0
+        btnPrev.Image = My.Resources.prev1
     End Sub
 
     Private Sub btnExit_MouseDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExit.MouseDown
         btnExit.Image = My.Resources._exit
     End Sub
 
-    Private Sub btnOpen_MouseDown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpen.MouseDown
-        'ShowWindow(w, SW_SHOW)
+    Private Sub btnOpen_MouseUp(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpen.MouseUp
         MySpotify.ShowSpotify()
+        If IsIconic(w) Then
+            btnOpen.Image = My.Resources.resize1
+        ElseIf Not IsWindowVisible(w) Then
+            btnOpen.Image = My.Resources.resize2
+        Else
+            btnOpen.Image = My.Resources.resize2
+        End If
     End Sub
 
     Private Sub btnExit_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnExit.MouseUp
@@ -200,30 +242,61 @@
         btnExit.Image = My.Resources._exit
     End Sub
 
+    Private Sub btnPrev_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPrev.MouseEnter
+        btnPrev.Image = My.Resources.prev2
+    End Sub
+
+    Private Sub btnPrev_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPrev.MouseLeave
+        btnPrev.Image = My.Resources.prev1
+    End Sub
+
+    Private Sub btnNext_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNext.MouseEnter
+        btnNext.Image = My.Resources.next2
+    End Sub
+
+    Private Sub btnNext_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNext.MouseLeave
+        btnNext.Image = My.Resources.next1
+    End Sub
+
+    Private Sub volDown_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles volDown.MouseEnter
+        volDown.Image = My.Resources.minus2
+    End Sub
+
+    Private Sub volDown_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles volDown.MouseLeave
+        volDown.Image = My.Resources.minus
+    End Sub
+
+    Private Sub volUp_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles volUp.MouseEnter
+        volUp.Image = My.Resources.plus2
+    End Sub
+
+    Private Sub volUp_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles volUp.MouseLeave
+        volUp.Image = My.Resources.plus
+    End Sub
+
     Private Sub lblTrack_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblTrack.MouseEnter
         'can we only scroll on hover?
         marqueeTimer.Enabled = True
-
     End Sub
 
     Private Sub marqueeTimer_Tick(sender As Object, e As EventArgs) Handles marqueeTimer.Tick
-        If lblTrack.Width > 245 Then 'if text width is larger than mini-player, was 270 now 245
-            lblTrack.Location = New Point(lblTrack.Location.X - 4, lblTrack.Location.Y) 'start scrolling
+        If lblTrack.Width > 260 Then 'if text width is larger than mini-player, was 270 now 245 now 260
+            lblTrack.Location = New Point(lblTrack.Location.X - 1, lblTrack.Location.Y) 'start scrolling
             If lblTrack.Right <= 325 Then 'when right edge of text moves far enough, start scrolling new text
-                trackRight.Location = New Point(trackRight.Location.X - 4, trackRight.Location.Y)
-                If trackRight.Left <= 94 Then
+                trackRight.Location = New Point(trackRight.Location.X - 1, trackRight.Location.Y)
+                If trackRight.Left <= 93 Then
                     marqueeTimer.Enabled = False
+                    lblTrack.Location = trackLLoc
+                    trackRight.Location = trackRLoc
                 End If
             End If
-
         Else 'if text fits, quit
             marqueeTimer.Enabled = False
-        End If
 
+        End If
     End Sub
 
     Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
         Me.Close()
     End Sub
-
 End Class

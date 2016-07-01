@@ -1,8 +1,8 @@
-' Spotify API V0.01 beta - a very quick First draft
-' © august 3 2009 by Steffest
+' Spotify API V0.01 beta © august 3 2009 by Steffest
 ' This code is free to use in any way you want and comes with NO WARRANTIES
 ' tested with Spotify 0.3.18
-' Usage:
+' Updated for Spotify 1.0.32.96 by zeldawg july 1 2016
+' Usage: 
 ' 
 ' Dim Spotify As New Spotify()
 ' 
@@ -20,16 +20,21 @@ Imports System.Threading
 
 Public Class spotify
     Public Declare Function IsIconic Lib "user32.dll" (ByVal hwnd As Integer) As Boolean
+    Public Declare Function IsWindowVisible Lib "user32.dll" (ByVal hwnd As IntPtr) As Boolean
     Public Declare Function ShowWindow Lib "user32.dll" (ByVal hwnd As Integer, ByVal nCmdShow As Integer) As Integer
 
-    Public Const SW_RESTORE As Integer = 9
-    Public Const SW_SHOW As Integer = 5
-    Public Const SW_HIDE As Integer = 0
-    Public Const SW_MINIMIZE As Integer = 6
-    Public Const SW_SHOWNORMAL As Integer = 1
-    Public Const SW_SHOWMINNOACTIVE As Integer = 7
+    Public Declare Function GetForegroundWindow Lib "user32" Alias "GetForegroundWindow" () As IntPtr
 
-    Public Const VK_SPACE = &H20
+    Public Const SW_SHOWMINIMIZED As Integer = 2
+    Public Const SW_SHOW As Integer = 5
+    Public Const SW_MINIMIZE As Integer = 6
+    Public Const SW_RESTORE As Integer = 9
+    'Public Const SW_HIDE As Integer = 0
+    'Public Const SW_SHOWNORMAL As Integer = 1
+    'Public Const SW_SHOWMINNOACTIVE As Integer = 7
+    'Public Const VK_SPACE = &H20
+
+    Private w As Integer
 
 #Region " win32 "
     Private Declare Auto Function FindWindow Lib "user32" (ByVal lpClassName As String, ByVal lpWindowName As String) As IntPtr
@@ -50,8 +55,6 @@ Public Class spotify
     Private Const KEYEVENTF_KEYUP As Integer = &H2S
 #End Region
 
-    Private w As Integer
-
     Sub FocusWindow(ByVal strWindowCaption As String, ByVal strClassName As String)
         Dim hWnd As Integer
         hWnd = FindWindow(strClassName, strWindowCaption)
@@ -60,6 +63,8 @@ Public Class spotify
             SetForegroundWindow(hWnd)
 
             If IsIconic(hWnd) Then  'Restore if minimized
+                ShowWindow(hWnd, SW_RESTORE)
+            ElseIf IsWindowVisible(hWnd) Then 'Restore if invisible
                 ShowWindow(hWnd, SW_RESTORE)
             Else
                 ShowWindow(hWnd, SW_SHOW)
@@ -80,24 +85,26 @@ Public Class spotify
     End Function
 
     Public Function PlayPause() As Boolean
-        'ShowWindow(w, SW_SHOW)
         FocusWindow(Nothing, "SpotifyMainWindow")
         ShowWindow(w, 0)
-        Thread.Sleep(100)
+        FocusWindow(Nothing, Nothing)
+        FocusWindow(Nothing, "SpotifyMainWindow")
+        ShowWindow(w, 0)
         keybd_event(Keys.Space, &H8F, 0, 0)
         keybd_event(Keys.Space, &H8F, KEYEVENTF_KEYUP, 0)
-        ShowWindow(w, SW_MINIMIZE)
+        'ShowWindow(w, SW_MINIMIZE)
     End Function
 
     Public Function PlayPrev() As Boolean
         FocusWindow(Nothing, "SpotifyMainWindow")
-        ShowWindow(w, 0) 'makes window less visible
+        ShowWindow(w, 0) 'hides window better
         keybd_event(Keys.ControlKey, &H1D, 0, 0)
         keybd_event(Keys.Left, &H45S, KEYEVENTF_EXTENDEDKEY Or 0, 0)
         keybd_event(Keys.Left, &H45S, KEYEVENTF_EXTENDEDKEY Or KEYEVENTF_KEYUP, 0)
-        Thread.Sleep(100) ' wait until spotify has trapped the control key before releasing it
+        'Thread.Sleep(100) ' wait until spotify has trapped the control key before releasing it
         keybd_event(Keys.ControlKey, &H1D, KEYEVENTF_KEYUP, 0)
-        ShowWindow(w, SW_MINIMIZE)
+        'ShowWindow(w, SW_MINIMIZE)
+
     End Function
 
     Public Function PlayNext() As Boolean
@@ -106,9 +113,9 @@ Public Class spotify
         keybd_event(Keys.ControlKey, &H1D, 0, 0)
         keybd_event(Keys.Right, &H45S, KEYEVENTF_EXTENDEDKEY Or 0, 0)
         keybd_event(Keys.Right, &H45S, KEYEVENTF_EXTENDEDKEY Or KEYEVENTF_KEYUP, 0)
-        Thread.Sleep(100) ' wait until spotify has trapped the control key before releasing it
+        'Thread.Sleep(100) ' wait until spotify has trapped the control key before releasing it
         keybd_event(Keys.ControlKey, &H1D, KEYEVENTF_KEYUP, 0)
-        ShowWindow(w, SW_MINIMIZE)
+        'ShowWindow(w, SW_MINIMIZE)
     End Function
 
     Public Function ShowNowPlaying() As Boolean
@@ -138,22 +145,27 @@ Public Class spotify
     End Function
 
     Public Function ShowSpotify() As Boolean
-        'If IntPtr.Size = 4 Then : Shell("C:/Program Files/Spotify/spotify.exe") FIXME - Spotify now saved in user folder
-        'ElseIf IntPtr.Size = 8 Then : Shell("C:/Program Files (x86)/Spotify/spotify.exe")FIXME - Spotify now saved in user folder
-        'End If
+        'If Spotify is already shown, then minimize it. Else, if Spotify is minimized it, show it.
 
-        SetForegroundWindow(w)
-        'keybd_event(Keys.Enter, 0, 0, 0)
-
+        If IsIconic(w) Then
+            FocusWindow(Nothing, "SpotifyMainWindow")
+        ElseIf Not IsWindowVisible(w) Then
+            FocusWindow(Nothing, "SpotifyMainWindow")
+        Else
+            ShowWindow(w, SW_MINIMIZE)
+        End If
     End Function
 
     Public Function VolumeUp() As Boolean
-        SetForegroundWindow(w)
+        FocusWindow(Nothing, "SpotifyMainWindow")
+        ShowWindow(w, 0)
+        'SetForegroundWindow(w)
         keybd_event(Keys.ControlKey, &H1D, 0, 0)
         keybd_event(Keys.Up, &H45S, KEYEVENTF_EXTENDEDKEY Or 0, 0)
         keybd_event(Keys.Up, &H45S, KEYEVENTF_EXTENDEDKEY Or KEYEVENTF_KEYUP, 0)
-        Thread.Sleep(100) ' wait until spotify has trapped the control key before releasing it
+        'Thread.Sleep(100) ' wait until spotify has trapped the control key before releasing it
         keybd_event(Keys.ControlKey, &H1D, KEYEVENTF_KEYUP, 0)
+        'ShowWindow(w, SW_MINIMIZE)
     End Function
 
     Public Function Mute() As Boolean
@@ -168,12 +180,15 @@ Public Class spotify
     End Function
 
     Public Function VolumeDown() As Boolean
-        SetForegroundWindow(w)
+        FocusWindow(Nothing, "SpotifyMainWindow")
+        ShowWindow(w, 0)
+        'SetForegroundWindow(w)
         keybd_event(Keys.ControlKey, &H1D, 0, 0)
         keybd_event(Keys.Down, &H45S, KEYEVENTF_EXTENDEDKEY Or 0, 0)
         keybd_event(Keys.Down, &H45S, KEYEVENTF_EXTENDEDKEY Or KEYEVENTF_KEYUP, 0)
-        Thread.Sleep(100) ' wait until spotify has trapped the control key before releasing it
+        'Thread.Sleep(100) ' wait until spotify has trapped the control key before releasing it
         keybd_event(Keys.ControlKey, &H1D, KEYEVENTF_KEYUP, 0)
+        'ShowWindow(w, SW_MINIMIZE)
     End Function
 
     Public Function Nowplaying() As String

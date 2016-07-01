@@ -32,17 +32,57 @@ Spotify Mini-Player
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.minus">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.minus2">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.next1">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:SpotifyMiniPlayer.My.Resources.Resources.next2">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
-<member name="P:SpotifyMiniPlayer.My.Resources.Resources.pause5">
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.pause1">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
-<member name="P:SpotifyMiniPlayer.My.Resources.Resources.play5">
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.pause2">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.play1">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.play2">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.plus">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.plus2">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.prev1">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -52,7 +92,22 @@ Spotify Mini-Player
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.resize1">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.resize2">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:SpotifyMiniPlayer.My.Resources.Resources.spotify__2_">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:SpotifyMiniPlayer.My.Resources.Resources.volume1">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
