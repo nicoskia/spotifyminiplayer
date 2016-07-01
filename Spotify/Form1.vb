@@ -113,6 +113,8 @@
         ElseIf MySpotify.Paused = False Then
             Artist = tempstring.Substring(0, tempval - 1)
             TrackName = tempstring.Substring(tempval + 2, Len(tempstring) - tempval - 2)
+            Label1.UseMnemonic = False
+            lblTrack.UseMnemonic = False
             If Label1.Text IsNot Artist Then Label1.Text = Artist
             If lblTrack.Text IsNot TrackName Then lblTrack.Text = TrackName
             If trackRight.Text IsNot TrackName Then trackRight.Text = TrackName
@@ -299,4 +301,10 @@
     Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
         Me.Close()
     End Sub
+
+    Private Sub OpenSpotifyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenSpotifyToolStripMenuItem.Click
+        MySpotify.ShowSpotify()
+    End Sub
+
+    'OpenSpotifyToolStripMenuItem.Text = "Minimize Spotify"
 End Class

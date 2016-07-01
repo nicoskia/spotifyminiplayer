@@ -42,6 +42,7 @@ Partial Class Form1
         Me.btnPlay = New System.Windows.Forms.PictureBox()
         Me.btnPrev = New System.Windows.Forms.PictureBox()
         Me.scrollBoundLeft = New System.Windows.Forms.PictureBox()
+        Me.OpenSpotifyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.btnOpen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnExit, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,14 +111,14 @@ Partial Class Form1
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenSpotifyToolStripMenuItem, Me.ToolStripMenuItem1})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(109, 30)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(182, 84)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(108, 26)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(181, 26)
         Me.ToolStripMenuItem1.Text = "Exit"
         '
         'btnOpen
@@ -203,6 +204,12 @@ Partial Class Form1
         Me.scrollBoundLeft.TabIndex = 10
         Me.scrollBoundLeft.TabStop = False
         '
+        'OpenSpotifyToolStripMenuItem
+        '
+        Me.OpenSpotifyToolStripMenuItem.Name = "OpenSpotifyToolStripMenuItem"
+        Me.OpenSpotifyToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.OpenSpotifyToolStripMenuItem.Text = "Open Spotify"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -262,4 +269,5 @@ Partial Class Form1
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents volDown As PictureBox
     Friend WithEvents volUp As PictureBox
+    Friend WithEvents OpenSpotifyToolStripMenuItem As ToolStripMenuItem
 End Class
