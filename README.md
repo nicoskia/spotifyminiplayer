@@ -5,4 +5,6 @@ A Mini-Player for Spotify
 
 Click on 'Spotify-Mini-Player.exe,' then click 'Raw' on the right to download it, and enjoy!
 
+Keep in mind - it's very much a first-draft kind of thing and probably has a few bugs (nothing major, though).
+
 For all questions/inquiries, please contact nicoskia@msu.edu
