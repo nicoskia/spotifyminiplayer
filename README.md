@@ -1,4 +1,6 @@
-# spotifyminiplayer
+# Spotify Mini-Player
 A Mini-Player for Spotify
 
-Navigate to Spotify\bin\Debug\ to find Spotify-Mini-Player.exe, click that, then click 'Raw' on the right to download it, and run!
+Click on 'Spotify-Mini-Player.exe,' then click 'Raw' on the right to download it, and enjoy!
+
+For all questions/inquiries, please contact nicoskia@msu.edu
