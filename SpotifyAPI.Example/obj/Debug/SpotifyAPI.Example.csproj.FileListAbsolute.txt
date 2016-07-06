@@ -1,0 +1,16 @@
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.exe.config
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.exe
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.pdb
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\SpotifyAPI.dll
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\Newtonsoft.Json.dll
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\SpotifyAPI.pdb
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\SpotifyAPI.xml
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\Newtonsoft.Json.xml
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.csprojResolveAssemblyReference.cache
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.ExampleForm.resources
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.LocalControl.resources
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.Properties.Resources.resources
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.csproj.GenerateResource.Cache
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.exe
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.pdb
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\Spotify Mini-Player.exe.config

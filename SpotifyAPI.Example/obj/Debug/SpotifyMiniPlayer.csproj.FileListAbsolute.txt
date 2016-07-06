@@ -1,0 +1,21 @@
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\Spotify Mini-Player.exe.config
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\Spotify Mini-Player.exe
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\Spotify Mini-Player.pdb
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\SpotifyAPI.dll
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\Newtonsoft.Json.dll
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\SpotifyAPI.pdb
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\SpotifyAPI.xml
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\Newtonsoft.Json.xml
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyMiniPlayer.csprojResolveAssemblyReference.cache
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.ExampleForm.resources
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.LocalControl.resources
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyMiniPlayer.Properties.Resources.resources
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\SpotifyMiniPlayer.csproj.GenerateResource.Cache
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\Spotify Mini-Player.exe
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\obj\Debug\Spotify Mini-Player.pdb
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Tests.dll
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\nunit.framework.dll
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\Moq.dll
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Tests.pdb
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\nunit.framework.xml
+C:\Users\cadsup1\Desktop\SpotifyAPI-NET-master\SpotifyAPI.Example\bin\Debug\Moq.xml
