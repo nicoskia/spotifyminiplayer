@@ -1,10 +1,24 @@
 # Spotify Mini-Player
-A Mini-Player for Spotify
+A first-draft attempt at a Mini-Player for Spotify
 
 ![screenshot](https://raw.githubusercontent.com/nicoskia/spotifyminiplayer/master/miniplayer2.png)
 
-Click here and download the executable https://github.com/nicoskia/spotifyminiplayer/releases
+Download the executable here: https://github.com/nicoskia/spotifyminiplayer/releases
 
-Keep in mind - it's very much a first-draft kind of thing and probably has a few bugs (nothing major, though).
+This application uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) for all Spotify related operations.
 
-For all questions/inquiries, please contact nicoskia@msu.edu
+## Features
+* View the current playing track in a comfy way
+* Play, pause and skip tracks without opening Spotify
+* Always on top 
+* View album art and song duration
+* Song/Artist/Album links to Spotify
+
+## Notice
+This is **not** a Spotify replacement. You need both running at the same time.
+
+## Copyright and License
+This piece of software is licensed under the GNU GPL v2.0. The complete license could be found at [http://www.gnu.org/licenses/gpl-2.0.txt](http://www.gnu.org/licenses/gpl-2.0.txt)
+
+## Contact
+For all questions and inquiries, please contact nicoskia@msu.edu
