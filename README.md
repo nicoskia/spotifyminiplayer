@@ -3,7 +3,8 @@ A first-draft attempt at a Mini-Player for Spotify
 
 ![screenshot](https://raw.githubusercontent.com/nicoskia/spotifyminiplayer/master/miniplayer2.png)
 
-Download the executable here: https://github.com/nicoskia/spotifyminiplayer/releases
+Download the installer here: https://github.com/nicoskia/spotifyminiplayer/releases
+**Note:** You have to "install" it, but it's simply creating a local copy of the instructions it needs to grab information from Spotify.
 
 This application uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) for all Spotify related operations.
 
