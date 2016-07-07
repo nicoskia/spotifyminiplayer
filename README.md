@@ -24,4 +24,4 @@ This is **not** a Spotify replacement. You need both running at the same time.
 This piece of software is licensed under the GNU GPL v2.0. The complete license could be found at [http://www.gnu.org/licenses/gpl-2.0.txt](http://www.gnu.org/licenses/gpl-2.0.txt)
 
 ## Contact
-For all questions and inquiries, please contact nicoskia@msu.edu
+For all questions, inquiries, suggestions, and anything else, please contact me at nicoskia@msu.edu!
