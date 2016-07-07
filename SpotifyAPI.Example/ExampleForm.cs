@@ -11,6 +11,7 @@ namespace SpotifyAPI.Example
         {
             InitializeComponent();
             this.TopMost = true;
+            this.ShowInTaskbar = false;
         }
 
 
@@ -57,5 +58,9 @@ namespace SpotifyAPI.Example
             mouseDown = false;
         }
 
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

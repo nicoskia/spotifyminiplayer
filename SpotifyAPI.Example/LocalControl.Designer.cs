@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocalControl));
             this.repeatShuffleLabel = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
             this.isPlayingLabel = new System.Windows.Forms.Label();
@@ -37,32 +38,28 @@
             this.albumLinkLabel = new System.Windows.Forms.LinkLabel();
             this.artistLinkLabel = new System.Windows.Forms.LinkLabel();
             this.titleLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.btnExit = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.volDown = new System.Windows.Forms.PictureBox();
-            this.volUp = new System.Windows.Forms.PictureBox();
-            this.btnPlayPause = new System.Windows.Forms.PictureBox();
-            this.btnNext = new System.Windows.Forms.PictureBox();
-            this.btnPrev = new System.Windows.Forms.PictureBox();
             this.titleMarquee = new System.Windows.Forms.Timer(this.components);
             this.trackRight = new System.Windows.Forms.LinkLabel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.albumRight = new System.Windows.Forms.LinkLabel();
             this.albumMarquee = new System.Windows.Forms.Timer(this.components);
             this.artistRight = new System.Windows.Forms.LinkLabel();
             this.artistMarquee = new System.Windows.Forms.Timer(this.components);
             this.smallAlbumPicture = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExit)).BeginInit();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnPlayPause = new System.Windows.Forms.PictureBox();
+            this.btnNext = new System.Windows.Forms.PictureBox();
+            this.btnPrev = new System.Windows.Forms.PictureBox();
+            this.volDown = new System.Windows.Forms.PictureBox();
+            this.volUp = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.smallAlbumPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.volDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.volUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlayPause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smallAlbumPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volUp)).BeginInit();
             this.SuspendLayout();
             // 
             // repeatShuffleLabel
@@ -140,7 +137,7 @@
             this.albumLinkLabel.Font = new System.Drawing.Font("Nirmala UI", 6.5F);
             this.albumLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.albumLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.albumLinkLabel.Location = new System.Drawing.Point(86, 36);
+            this.albumLinkLabel.Location = new System.Drawing.Point(3, 36);
             this.albumLinkLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.albumLinkLabel.Name = "albumLinkLabel";
             this.albumLinkLabel.Size = new System.Drawing.Size(11, 13);
@@ -159,7 +156,7 @@
             this.artistLinkLabel.Font = new System.Drawing.Font("Nirmala UI", 6.5F);
             this.artistLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.artistLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.artistLinkLabel.Location = new System.Drawing.Point(86, 22);
+            this.artistLinkLabel.Location = new System.Drawing.Point(3, 22);
             this.artistLinkLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.artistLinkLabel.Name = "artistLinkLabel";
             this.artistLinkLabel.Size = new System.Drawing.Size(11, 13);
@@ -181,7 +178,7 @@
             this.titleLinkLabel.Font = new System.Drawing.Font("Nirmala UI", 7.5F, System.Drawing.FontStyle.Bold);
             this.titleLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.titleLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.titleLinkLabel.Location = new System.Drawing.Point(86, 4);
+            this.titleLinkLabel.Location = new System.Drawing.Point(3, 4);
             this.titleLinkLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titleLinkLabel.Name = "titleLinkLabel";
             this.titleLinkLabel.Size = new System.Drawing.Size(13, 17);
@@ -191,84 +188,6 @@
             this.titleLinkLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.titleLinkLabel.MouseEnter += new System.EventHandler(this.titleLinkLabel_MouseEnter);
             this.titleLinkLabel.MouseLeave += new System.EventHandler(this.titleLinkLabel_MouseLeave);
-            // 
-            // btnExit
-            // 
-            this.btnExit.Image = global::SpotifyMiniPlayer.Properties.Resources.exit;
-            this.btnExit.Location = new System.Drawing.Point(218, 3);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(23, 20);
-            this.btnExit.TabIndex = 52;
-            this.btnExit.TabStop = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            this.btnExit.MouseEnter += new System.EventHandler(this.btnExit_MouseEnter);
-            this.btnExit.MouseLeave += new System.EventHandler(this.btnExit_MouseLeave);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(231, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(18, 51);
-            this.pictureBox1.TabIndex = 51;
-            this.pictureBox1.TabStop = false;
-            // 
-            // volDown
-            // 
-            this.volDown.Enabled = false;
-            this.volDown.Image = global::SpotifyMiniPlayer.Properties.Resources.minus;
-            this.volDown.Location = new System.Drawing.Point(377, 56);
-            this.volDown.Name = "volDown";
-            this.volDown.Size = new System.Drawing.Size(15, 15);
-            this.volDown.TabIndex = 50;
-            this.volDown.TabStop = false;
-            this.volDown.Visible = false;
-            // 
-            // volUp
-            // 
-            this.volUp.Enabled = false;
-            this.volUp.Image = global::SpotifyMiniPlayer.Properties.Resources.plus;
-            this.volUp.Location = new System.Drawing.Point(356, 56);
-            this.volUp.Name = "volUp";
-            this.volUp.Size = new System.Drawing.Size(15, 15);
-            this.volUp.TabIndex = 49;
-            this.volUp.TabStop = false;
-            this.volUp.Visible = false;
-            // 
-            // btnPlayPause
-            // 
-            this.btnPlayPause.Image = global::SpotifyMiniPlayer.Properties.Resources.play1;
-            this.btnPlayPause.Location = new System.Drawing.Point(130, 53);
-            this.btnPlayPause.Name = "btnPlayPause";
-            this.btnPlayPause.Size = new System.Drawing.Size(38, 37);
-            this.btnPlayPause.TabIndex = 48;
-            this.btnPlayPause.TabStop = false;
-            this.btnPlayPause.Click += new System.EventHandler(this.btnPlayPause_Click);
-            this.btnPlayPause.MouseEnter += new System.EventHandler(this.btnPlayPause_MouseEnter);
-            this.btnPlayPause.MouseLeave += new System.EventHandler(this.btnPlayPause_MouseLeave);
-            // 
-            // btnNext
-            // 
-            this.btnNext.Image = global::SpotifyMiniPlayer.Properties.Resources.next1;
-            this.btnNext.Location = new System.Drawing.Point(186, 66);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(15, 15);
-            this.btnNext.TabIndex = 47;
-            this.btnNext.TabStop = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            this.btnNext.MouseEnter += new System.EventHandler(this.btnNext_MouseEnter);
-            this.btnNext.MouseLeave += new System.EventHandler(this.btnNext_MouseLeave);
-            // 
-            // btnPrev
-            // 
-            this.btnPrev.Image = global::SpotifyMiniPlayer.Properties.Resources.prev1;
-            this.btnPrev.Location = new System.Drawing.Point(98, 66);
-            this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(15, 15);
-            this.btnPrev.TabIndex = 46;
-            this.btnPrev.TabStop = false;
-            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
-            this.btnPrev.MouseEnter += new System.EventHandler(this.btnPrev_MouseEnter);
-            this.btnPrev.MouseLeave += new System.EventHandler(this.btnPrev_MouseLeave);
             // 
             // titleMarquee
             // 
@@ -286,7 +205,7 @@
             this.trackRight.Font = new System.Drawing.Font("Nirmala UI", 7.5F, System.Drawing.FontStyle.Bold);
             this.trackRight.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.trackRight.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.trackRight.Location = new System.Drawing.Point(240, 4);
+            this.trackRight.Location = new System.Drawing.Point(157, 4);
             this.trackRight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.trackRight.Name = "trackRight";
             this.trackRight.Size = new System.Drawing.Size(13, 17);
@@ -297,14 +216,6 @@
             this.trackRight.MouseEnter += new System.EventHandler(this.trackRight_MouseEnter);
             this.trackRight.MouseLeave += new System.EventHandler(this.trackRight_MouseLeave);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(-6, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(96, 67);
-            this.pictureBox2.TabIndex = 54;
-            this.pictureBox2.TabStop = false;
-            // 
             // albumRight
             // 
             this.albumRight.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
@@ -313,7 +224,7 @@
             this.albumRight.Font = new System.Drawing.Font("Nirmala UI", 6.5F);
             this.albumRight.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.albumRight.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.albumRight.Location = new System.Drawing.Point(240, 36);
+            this.albumRight.Location = new System.Drawing.Point(157, 36);
             this.albumRight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.albumRight.Name = "albumRight";
             this.albumRight.Size = new System.Drawing.Size(11, 13);
@@ -337,7 +248,7 @@
             this.artistRight.Font = new System.Drawing.Font("Nirmala UI", 6.5F);
             this.artistRight.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.artistRight.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.artistRight.Location = new System.Drawing.Point(240, 22);
+            this.artistRight.Location = new System.Drawing.Point(157, 22);
             this.artistRight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.artistRight.Name = "artistRight";
             this.artistRight.Size = new System.Drawing.Size(11, 13);
@@ -356,29 +267,99 @@
             // smallAlbumPicture
             // 
             this.smallAlbumPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.smallAlbumPicture.Location = new System.Drawing.Point(5, 7);
+            this.smallAlbumPicture.Location = new System.Drawing.Point(155, 4);
             this.smallAlbumPicture.Margin = new System.Windows.Forms.Padding(4);
             this.smallAlbumPicture.Name = "smallAlbumPicture";
             this.smallAlbumPicture.Size = new System.Drawing.Size(80, 80);
             this.smallAlbumPicture.TabIndex = 38;
             this.smallAlbumPicture.TabStop = false;
             // 
-            // pictureBox3
+            // pictureBox2
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(213, 2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(37, 22);
-            this.pictureBox3.TabIndex = 57;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.pictureBox2.Location = new System.Drawing.Point(147, -3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(102, 69);
+            this.pictureBox2.TabIndex = 54;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(-12, -3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(18, 58);
+            this.pictureBox1.TabIndex = 51;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnPlayPause
+            // 
+            this.btnPlayPause.Image = ((System.Drawing.Image)(resources.GetObject("btnPlayPause.Image")));
+            this.btnPlayPause.Location = new System.Drawing.Point(53, 52);
+            this.btnPlayPause.Name = "btnPlayPause";
+            this.btnPlayPause.Size = new System.Drawing.Size(50, 40);
+            this.btnPlayPause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnPlayPause.TabIndex = 48;
+            this.btnPlayPause.TabStop = false;
+            this.btnPlayPause.Click += new System.EventHandler(this.btnPlayPause_Click);
+            this.btnPlayPause.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnPlayPause_MouseDown);
+            this.btnPlayPause.MouseEnter += new System.EventHandler(this.btnPlayPause_MouseEnter);
+            this.btnPlayPause.MouseLeave += new System.EventHandler(this.btnPlayPause_MouseLeave);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            this.btnNext.Location = new System.Drawing.Point(109, 65);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(15, 15);
+            this.btnNext.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnNext.TabIndex = 47;
+            this.btnNext.TabStop = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.btnNext.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnNext_MouseDown);
+            this.btnNext.MouseEnter += new System.EventHandler(this.btnNext_MouseEnter);
+            this.btnNext.MouseLeave += new System.EventHandler(this.btnNext_MouseLeave);
+            // 
+            // btnPrev
+            // 
+            this.btnPrev.Image = ((System.Drawing.Image)(resources.GetObject("btnPrev.Image")));
+            this.btnPrev.Location = new System.Drawing.Point(30, 65);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(15, 15);
+            this.btnPrev.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnPrev.TabIndex = 46;
+            this.btnPrev.TabStop = false;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            this.btnPrev.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnPrev_MouseDown);
+            this.btnPrev.MouseEnter += new System.EventHandler(this.btnPrev_MouseEnter);
+            this.btnPrev.MouseLeave += new System.EventHandler(this.btnPrev_MouseLeave);
+            // 
+            // volDown
+            // 
+            this.volDown.Enabled = false;
+            this.volDown.Image = global::SpotifyMiniPlayer.Properties.Resources.minus;
+            this.volDown.Location = new System.Drawing.Point(377, 56);
+            this.volDown.Name = "volDown";
+            this.volDown.Size = new System.Drawing.Size(15, 15);
+            this.volDown.TabIndex = 50;
+            this.volDown.TabStop = false;
+            this.volDown.Visible = false;
+            // 
+            // volUp
+            // 
+            this.volUp.Enabled = false;
+            this.volUp.Image = global::SpotifyMiniPlayer.Properties.Resources.plus;
+            this.volUp.Location = new System.Drawing.Point(356, 56);
+            this.volUp.Name = "volUp";
+            this.volUp.Size = new System.Drawing.Size(15, 15);
+            this.volUp.TabIndex = 49;
+            this.volUp.TabStop = false;
+            this.volUp.Visible = false;
             // 
             // LocalControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.timeProgressBar);
             this.Controls.Add(this.smallAlbumPicture);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -389,7 +370,6 @@
             this.Controls.Add(this.albumLinkLabel);
             this.Controls.Add(this.artistLinkLabel);
             this.Controls.Add(this.titleLinkLabel);
-            this.Controls.Add(this.timeProgressBar);
             this.Controls.Add(this.artistRight);
             this.Controls.Add(this.albumRight);
             this.Controls.Add(this.trackRight);
@@ -405,16 +385,14 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LocalControl_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LocalControl_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LocalControl_MouseUp);
-            ((System.ComponentModel.ISupportInitialize)(this.btnExit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smallAlbumPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.volDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.volUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlayPause)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smallAlbumPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volUp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,7 +414,6 @@
         private System.Windows.Forms.LinkLabel artistLinkLabel;
         private System.Windows.Forms.LinkLabel titleLinkLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox btnExit;
         private System.Windows.Forms.Timer titleMarquee;
         private System.Windows.Forms.LinkLabel trackRight;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -445,6 +422,5 @@
         private System.Windows.Forms.LinkLabel artistRight;
         private System.Windows.Forms.Timer artistMarquee;
         private System.Windows.Forms.PictureBox smallAlbumPicture;
-        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

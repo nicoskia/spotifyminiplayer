@@ -140,21 +140,6 @@
     <None Include="Resources\volume0.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\play2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pause2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\next2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\prev2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\prev1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\spotify %282%29.png" />
   </ItemGroup>
   <ItemGroup>
@@ -165,14 +150,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\play1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pause1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\next1.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="Resources\next2.png" />
+    <None Include="Resources\pause1.png" />
+    <None Include="Resources\pause2.png" />
+    <None Include="Resources\play2.png" />
+    <None Include="Resources\prev1.png" />
+    <None Include="Resources\prev2.png" />
+    <None Include="Resources\next3.png" />
+    <None Include="Resources\pause3.png" />
+    <None Include="Resources\play3.png" />
+    <None Include="Resources\prev3.png" />
+    <None Include="Resources\nextBig.png" />
+    <None Include="Resources\pauseBig.png" />
+    <None Include="Resources\playBig.png" />
+    <None Include="Resources\prevBig.png" />
     <Content Include="spotify.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
