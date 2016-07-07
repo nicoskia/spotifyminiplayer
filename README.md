@@ -10,9 +10,9 @@ Download the installer here: https://github.com/nicoskia/spotifyminiplayer/relea
 This application uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) for all Spotify related operations.
 
 ## Features
-* View the current playing track in a comfy way
+* Easily and comfortably view the current playing track
 * Play, pause and skip tracks without opening Spotify
-* Always on top 
+* Mini-player is always on top 
 * View album art and song duration
 * Song/Artist/Album links to Spotify
 * Runs in the system tray - no taskbar icon clutter!
