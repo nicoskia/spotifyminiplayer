@@ -1,5 +1,5 @@
 # Spotify Mini-Player
-A first-draft attempt at a Mini-Player for Spotify!
+A first-draft attempt at a Spotify Mini-Player for Windows!
 
 ![screenshot](https://raw.githubusercontent.com/nicoskia/spotifyminiplayer/master/miniplayer.png)
 
