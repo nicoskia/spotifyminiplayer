@@ -3,22 +3,23 @@ using SpotifyAPI.Local.Enums;
 using SpotifyAPI.Local.Models;
 using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace SpotifyAPI.Example
 {
     public partial class LocalControl : UserControl
     {
         private readonly SpotifyLocalAPI _spotify;
+        private readonly SpotifyAPI.Web.SpotifyWebAPI _spotifyWEB;
         private Track _currentTrack;
-        public Point trackLLoc = new System.Drawing.Point(3, 4);
-        public Point trackRLoc = new System.Drawing.Point(157, 4);
-        public Point artistLLoc = new System.Drawing.Point(3, 22);
-        public Point artistRLoc = new System.Drawing.Point(157, 22);
-        public Point albumLLoc = new System.Drawing.Point(3, 36);
-        public Point albumRLoc = new System.Drawing.Point(157, 36);
+        public Point trackLLoc = new System.Drawing.Point(86, 6);
+        public Point trackRLoc = new System.Drawing.Point(260, 6);
+        public Point artistLLoc = new System.Drawing.Point(86, 25);
+        public Point artistRLoc = new System.Drawing.Point(260, 25);
+        public Point albumLLoc = new System.Drawing.Point(86, 42);
+        public Point albumRLoc = new System.Drawing.Point(260, 42);
 
 
         public LocalControl()
@@ -26,32 +27,28 @@ namespace SpotifyAPI.Example
             InitializeComponent();
 
             _spotify = new SpotifyLocalAPI();
+            _spotifyWEB = new SpotifyAPI.Web.SpotifyWebAPI();
             _spotify.OnPlayStateChange += _spotify_OnPlayStateChange;
             _spotify.OnTrackChange += _spotify_OnTrackChange;
             _spotify.OnTrackTimeChange += _spotify_OnTrackTimeChange;
             _spotify.OnVolumeChange += _spotify_OnVolumeChange;
-            _spotify.SynchronizingObject = this;
+            //_spotify.SynchronizingObject = this;
 
             artistLinkLabel.Click += (sender, args) => Process.Start(artistLinkLabel.Tag.ToString());
             albumLinkLabel.Click += (sender, args) => Process.Start(albumLinkLabel.Tag.ToString());
             titleLinkLabel.Click += (sender, args) => Process.Start(titleLinkLabel.Tag.ToString());
 
+            //SpotifyAPI.Example.WebControl.RunAuthorization();
             Connect();
-
         }
 
-        //protected override void WndProc(ref Message m)
+        //private void RunAuthentication()
         //{
-        //    base.WndProc(ref m);
-        //    if (m.Msg == WM_NCHITTEST)
-        //        m.Result = (IntPtr)(HT_CAPTION);
+        //    throw new NotImplementedException();
         //}
 
-        //private const int WM_NCHITTEST = 0x84;
-        //private const int HT_CLIENT = 0x1;
-        //private const int HT_CAPTION = 0x2;
-
         public void Connect()
+
         {
             if (!SpotifyLocalAPI.IsSpotifyRunning())
             {
@@ -67,6 +64,9 @@ namespace SpotifyAPI.Example
             bool successful = _spotify.Connect();
             if (successful)
             {
+                
+                //connectBtn.Text = @"Connection to Spotify successful";
+                //connectBtn.Enabled = false;
                 UpdateInfos();
                 _spotify.ListenForEvents = true;
             }
@@ -78,8 +78,6 @@ namespace SpotifyAPI.Example
             }
         }
 
-
-
         public void UpdateInfos()
         {
             StatusResponse status = _spotify.GetStatus();
@@ -88,44 +86,46 @@ namespace SpotifyAPI.Example
 
             //Basic Spotify Infos
             UpdatePlayingStatus(status.Playing);
-            repeatShuffleLabel.Text = status.Repeat + @" and " + status.Shuffle;
+            //clientVersionLabel.Text = status.ClientVersion;
+            //versionLabel.Text = status.Version.ToString();
+            //repeatShuffleLabel.Text = status.Repeat + @" and " + status.Shuffle;
 
             if (status.Track != null) //Update track infos
                 UpdateTrack(status.Track);
 
             if (isPlayingLabel.Text == "True")
             {
-                btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.pause1;
+                btnPlayPause.Image = SpotifyAPI.Example.Properties.Resources.pause1;
             }
             else
             {
-                btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.play1;
+                btnPlayPause.Image = SpotifyAPI.Example.Properties.Resources.play1;
             }
         }
 
         public async void UpdateTrack(Track track)
         {
             _currentTrack = track;
+
+            advertLabel.Text = track.IsAd() ? "ADVERT" : "";
             timeProgressBar.Maximum = track.Length;
 
             if (track.IsAd())
                 return; //Don't process further, maybe null values
 
-            titleLinkLabel.UseMnemonic = false;
             titleLinkLabel.Text = track.TrackResource.Name;
             titleLinkLabel.Tag = track.TrackResource.Uri;
             trackRight.UseMnemonic = false;
             trackRight.Text = track.TrackResource.Name;
             trackRight.Tag = track.TrackResource.Uri;
 
-            artistLinkLabel.UseMnemonic = false;
             artistLinkLabel.Text = track.ArtistResource.Name;
             artistLinkLabel.Tag = track.ArtistResource.Uri;
             artistRight.UseMnemonic = false;
             artistRight.Text = track.ArtistResource.Name;
             artistRight.Tag = track.ArtistResource.Uri;
 
-            albumLinkLabel.UseMnemonic = false;
+
             albumLinkLabel.Text = track.AlbumResource.Name;
             albumLinkLabel.Tag = track.AlbumResource.Uri;
             albumRight.UseMnemonic = false;
@@ -134,35 +134,135 @@ namespace SpotifyAPI.Example
 
             SpotifyUri uri = track.TrackResource.ParseUri();
 
-            smallAlbumPicture.BackgroundImage = await track.GetAlbumArtAsync(AlbumArtSize.Size160);
-            //smallAlbumPicture.BackgroundImage = track.GetAlbumArt(AlbumArtSize.Size160);
+            //trackInfoBox.Text = $@"Track Info - {uri.Id}";
+
+            //bigAlbumPicture.Image = await track.GetAlbumArtAsync(AlbumArtSize.Size640);
+            smallAlbumPicture.Image = await track.GetAlbumArtAsync(AlbumArtSize.Size160);
         }
 
         public void UpdatePlayingStatus(bool playing)
         {
             isPlayingLabel.Text = playing.ToString();
-            if (isPlayingLabel.Text == "True")
-                btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.pause1;
-            else btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.play1;
         }
 
         private void _spotify_OnVolumeChange(object sender, VolumeChangeEventArgs e)
         {
-            volumeLabel.Text = (e.NewVolume * 100).ToString(CultureInfo.InvariantCulture);
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => _spotify_OnVolumeChange(sender, e)));
+                return;
+            }
+            //volumeLabel.Text = (e.NewVolume * 100).ToString(CultureInfo.InvariantCulture);
         }
 
         private void _spotify_OnTrackTimeChange(object sender, TrackTimeChangeEventArgs e)
         {
-            double timeLeft = (e.TrackTime - _currentTrack.Length) * -1;
-            //timeLabel.Text = $"{FormatTime(e.TrackTime)}/{FormatTime(_currentTrack.Length)}";
-            timeLabel.Text = $"{FormatTime(timeLeft)}";
-            timeProgressBar.Value = (int)e.TrackTime;
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => _spotify_OnTrackTimeChange(sender, e)));
+                return;
+            }
+            timeTotal.Text = $@"{FormatTime(_currentTrack.Length)}";
+            timeLeft.Text = $@"{FormatTime(e.TrackTime)}";
+            if(e.TrackTime < _currentTrack.Length)
+                timeProgressBar.Value = (int)e.TrackTime;
         }
 
         private void _spotify_OnTrackChange(object sender, TrackChangeEventArgs e)
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => _spotify_OnTrackChange(sender, e)));
+                return;
+            }
             UpdateTrack(e.NewTrack);
+            UpdateInfos();
+        }
 
+        private void _spotify_OnPlayStateChange(object sender, PlayStateEventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => _spotify_OnPlayStateChange(sender, e)));
+                return;
+            }
+            UpdatePlayingStatus(e.Playing);
+            UpdateInfos();
+        }
+
+        //private async void playUrlBtn_Click(object sender, EventArgs e)
+        //{
+        //    await _spotify.PlayURL(playTextBox.Text, contextTextBox.Text);
+        //}
+
+        private void btnExit_MouseEnter(object sender, EventArgs e)
+        {
+            btnExit.Image = SpotifyAPI.Example.Properties.Resources.exit2;
+        }
+        private void btnExit_MouseLeave(object sender, EventArgs e)
+        {
+            btnExit.Image = SpotifyAPI.Example.Properties.Resources.exit1;
+        }
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            btnExit.Image = SpotifyAPI.Example.Properties.Resources.exit1;
+            Application.Exit();
+        }
+
+        private void btnPlayPause_MouseEnter(object sender, EventArgs e)
+        {
+            if (isPlayingLabel.Text == "True")
+                btnPlayPause.Image = SpotifyAPI.Example.Properties.Resources.pause2;
+            else btnPlayPause.Image = SpotifyAPI.Example.Properties.Resources.play2;
+        }
+        private void btnPlayPause_MouseLeave(object sender, EventArgs e)
+        {
+            if (isPlayingLabel.Text == "True")
+                btnPlayPause.Image = SpotifyAPI.Example.Properties.Resources.pause1;
+            else btnPlayPause.Image = SpotifyAPI.Example.Properties.Resources.play1;
+        }
+
+        private async void btnPlayPause_Click(object sender, EventArgs e)
+        {
+
+            if (isPlayingLabel.Text == "True")
+            {
+                btnPlayPause.Image = SpotifyAPI.Example.Properties.Resources.play1;
+                await _spotify.Pause();
+            }
+            else
+            {
+                btnPlayPause.Image = SpotifyAPI.Example.Properties.Resources.pause1;
+                await _spotify.Play();
+            }
+        }
+
+        private void titleLinkLabel_MouseEnter(object sender, EventArgs e)
+        {
+            titleMarquee.Enabled = true;
+        }
+        private void artistLinkLabel_MouseEnter(object sender, EventArgs e)
+        {
+            artistMarquee.Enabled = true;
+        }
+        private void albumLinkLabel_MouseEnter(object sender, EventArgs e)
+        {
+            albumMarquee.Enabled = true;
+        }
+
+        private async void playBtn_Click(object sender, EventArgs e)
+        {
+            await _spotify.Play();
+        }
+
+        private async void pauseBtn_Click(object sender, EventArgs e)
+        {
+            await _spotify.Pause();
+        }
+
+        private void prevBtn_Click(object sender, EventArgs e)
+        {
+            _spotify.Previous();
             albumMarquee.Enabled = false;
             artistMarquee.Enabled = false;
             titleMarquee.Enabled = false;
@@ -174,153 +274,48 @@ namespace SpotifyAPI.Example
             albumRight.Location = albumRLoc;
         }
 
-        private void _spotify_OnPlayStateChange(object sender, PlayStateEventArgs e)
-        {
-            UpdatePlayingStatus(e.Playing);
-        }
-
-        private void btnPlayPause_Click(object sender, EventArgs e)
-        {
-
-            if (isPlayingLabel.Text == "True")
-            {
-                btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.play1;
-                _spotify.Pause();
-            }
-            else
-            {
-                btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.pause1;
-                _spotify.Play();
-            }
-        }
-
-        private void btnPrev_Click(object sender, EventArgs e)
-        {
-            _spotify.Previous();
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
+        private void skipBtn_Click(object sender, EventArgs e)
         {
             _spotify.Skip();
+            albumMarquee.Enabled = false;
+            artistMarquee.Enabled = false;
+            titleMarquee.Enabled = false;
+            titleLinkLabel.Location = trackLLoc;
+            trackRight.Location = trackRLoc;
+            albumLinkLabel.Location = albumLLoc;
+            albumRight.Location = albumRLoc;
         }
 
-        private void btnPrev_MouseEnter(object sender, EventArgs e)
+        private void prevBtn_MouseEnter(object sender, EventArgs e)
         {
-            btnPrev.Image = SpotifyMiniPlayer.Properties.Resources.prevBig;
+            prevBtn.Image = SpotifyAPI.Example.Properties.Resources.prev2;
         }
-        private void btnPrev_MouseDown(object sender, MouseEventArgs e)
+        private void prevBtn_MouseLeave(object sender, EventArgs e)
         {
-            btnPrev.Image = SpotifyMiniPlayer.Properties.Resources.prev3;
+            prevBtn.Image = SpotifyAPI.Example.Properties.Resources.prev1;
         }
-        private void btnPrev_MouseLeave(object sender, EventArgs e)
+        private void skipBtn_MouseEnter(object sender, EventArgs e)
         {
-            btnPrev.Image = SpotifyMiniPlayer.Properties.Resources.prev1;
+            skipBtn.Image = SpotifyAPI.Example.Properties.Resources.next2;
         }
-        private void btnNext_MouseEnter(object sender, EventArgs e)
+        private void skipBtn_MouseLeave(object sender, EventArgs e)
         {
-            btnNext.Image = SpotifyMiniPlayer.Properties.Resources.nextBig;
-        }
-        private void btnNext_MouseDown(object sender, MouseEventArgs e)
-        {
-            btnNext.Image = SpotifyMiniPlayer.Properties.Resources.next3;
-        }
-        private void btnNext_MouseLeave(object sender, EventArgs e)
-        {
-            btnNext.Image = SpotifyMiniPlayer.Properties.Resources.next1;
-        }
-        private void btnPlayPause_MouseEnter(object sender, EventArgs e)
-        {
-            if (isPlayingLabel.Text == "True")
-                btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.pauseBig;
-            else btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.playBig;
-        }
-        private void btnPlayPause_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (isPlayingLabel.Text == "True")
-                btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.pause3;
-            else btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.play3;
-        }
-        private void btnPlayPause_MouseLeave(object sender, EventArgs e)
-        {
-            if (isPlayingLabel.Text == "True")
-                btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.pause1;
-            else btnPlayPause.Image = SpotifyMiniPlayer.Properties.Resources.play1;
-        }
-        //private void btnExit_MouseEnter(object sender, EventArgs e)
-        //{
-        //    btnExit.Image = SpotifyMiniPlayer.Properties.Resources.exit2;
-        //}
-        //private void btnExit_MouseLeave(object sender, EventArgs e)
-        //{
-        //    btnExit.Image = SpotifyMiniPlayer.Properties.Resources.exit;
-        //}
-        //private void btnExit_Click(object sender, EventArgs e)
-        //{
-        //    btnExit.Image = SpotifyMiniPlayer.Properties.Resources.exit;
-        //    Application.Exit();
-        //}
-
-        private void titleLinkLabel_MouseEnter(object sender, EventArgs e)
-        {
-            titleLinkLabel.LinkColor = System.Drawing.Color.White;
-            titleMarquee.Enabled = true;
-        }
-        private void artistLinkLabel_MouseEnter(object sender, EventArgs e)
-        {
-            artistLinkLabel.LinkColor = System.Drawing.Color.White;
-        }
-        private void albumLinkLabel_MouseEnter(object sender, EventArgs e)
-        {
-            albumLinkLabel.LinkColor = System.Drawing.Color.White;
-            albumMarquee.Enabled = true;
-        }
-        private void titleLinkLabel_MouseLeave(object sender, EventArgs e)
-        {
-            titleLinkLabel.LinkColor = System.Drawing.Color.FromArgb(175, 175, 175);
-        }
-        private void artistLinkLabel_MouseLeave(object sender, EventArgs e)
-        {
-            artistLinkLabel.LinkColor = System.Drawing.Color.FromArgb(175, 175, 175);
-        }
-        private void albumLinkLabel_MouseLeave(object sender, EventArgs e)
-        {
-            albumLinkLabel.LinkColor = System.Drawing.Color.FromArgb(175, 175, 175);
-        }
-        private void trackRight_MouseEnter(object sender, EventArgs e)
-        {
-            trackRight.LinkColor = System.Drawing.Color.White;
-        }
-        private void trackRight_MouseLeave(object sender, EventArgs e)
-        {
-            trackRight.LinkColor = System.Drawing.Color.FromArgb(175, 175, 175);
-        }
-        private void artistRight_MouseEnter(object sender, EventArgs e)
-        {
-            artistRight.LinkColor = System.Drawing.Color.White;
-        }
-        private void artistRight_MouseLeave(object sender, EventArgs e)
-        {
-            artistRight.LinkColor = System.Drawing.Color.FromArgb(175, 175, 175);
+            skipBtn.Image = SpotifyAPI.Example.Properties.Resources.next1;
         }
 
-        private void albumRight_MouseEnter(object sender, EventArgs e)
+        private void saveBtn_MouseEnter(object sender, EventArgs e)
         {
-            albumRight.LinkColor = System.Drawing.Color.White;
+            saveBtn.Image = SpotifyAPI.Example.Properties.Resources.plus2;
         }
-        private void albumRight_MouseLeave(object sender, EventArgs e)
+        private void saveBtn_MouseLeave(object sender, EventArgs e)
         {
-            albumRight.LinkColor = System.Drawing.Color.FromArgb(175, 175, 175);
+            saveBtn.Image = SpotifyAPI.Example.Properties.Resources.plus;
         }
 
-        //private void volUp_Click(object sender, EventArgs e)
-        //{
-        //}
-
-        //private void volDown_Click(object sender, VolumeChangeEventArgs e, EventArgs f)
-        //{
-        //    e.NewVolume -= 10;
-
-        //}
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            _spotifyWEB.SaveTrack(_currentTrack.TrackResource.Uri);
+        }
 
         private static String FormatTime(double sec)
         {
@@ -333,16 +328,16 @@ namespace SpotifyAPI.Example
 
         private void titleMarquee_Tick(object sender, EventArgs e)
         {
-            //if text width is larger than mini-player, was 270 now 245 now 260
-            if (titleLinkLabel.Width > 150)
+            //if text width is larger than mini-player
+            if (titleLinkLabel.Width > 145)
             {
                 titleLinkLabel.Location = new Point(titleLinkLabel.Location.X - 1, titleLinkLabel.Location.Y);
                 //start scrolling
-                //when right edge of text moves far enough, start scrolling new text -- was 25 changed to 45
-                if (titleLinkLabel.Right <= 130)
+                //when right edge of text moves far enough, start scrolling new text
+                if (titleLinkLabel.Right <= 250)
                 {
                     trackRight.Location = new Point(trackRight.Location.X - 1, trackRight.Location.Y);
-                    if (trackRight.Left <= 3)
+                    if (trackRight.Left <= 86)
                     {
                         titleMarquee.Enabled = false;
                         titleLinkLabel.Location = trackLLoc;
@@ -361,16 +356,16 @@ namespace SpotifyAPI.Example
 
         private void artistMarquee_Tick(object sender, EventArgs e)
         {
-            //if text width is larger than mini-player, was 270 now 245 now 260
+            //if text width is larger than mini-playe
             if (artistLinkLabel.Width > 150)
             {
                 artistLinkLabel.Location = new Point(artistLinkLabel.Location.X - 1, artistLinkLabel.Location.Y);
                 //start scrolling
-                //when right edge of text moves far enough, start scrolling new text -- was 25 changed to 45
-                if (artistLinkLabel.Right <= 130)
+                //when right edge of text moves far enough, start scrolling new text
+                if (artistLinkLabel.Right <= 250)
                 {
                     albumRight.Location = new Point(albumRight.Location.X - 1, albumRight.Location.Y);
-                    if (albumRight.Left <= 3)
+                    if (albumRight.Left <= 86)
                     {
                         artistMarquee.Enabled = false;
                         artistLinkLabel.Location = artistLLoc;
@@ -389,16 +384,16 @@ namespace SpotifyAPI.Example
 
         private void albumMarquee_Tick(object sender, EventArgs e)
         {
-            //if text width is larger than mini-player, was 270 now 245 now 260
+            //if text width is larger than mini-player
             if (albumLinkLabel.Width > 150)
             {
                 albumLinkLabel.Location = new Point(albumLinkLabel.Location.X - 1, albumLinkLabel.Location.Y);
                 //start scrolling
-                //when right edge of text moves far enough, start scrolling new text -- was 25 changed to 45
-                if (albumLinkLabel.Right <= 130)
+                //when right edge of text moves far enough, start scrolling new text
+                if (albumLinkLabel.Right <= 250)
                 {
                     albumRight.Location = new Point(albumRight.Location.X - 1, albumRight.Location.Y);
-                    if (albumRight.Left <= 3)
+                    if (albumRight.Left <= 86)
                     {
                         albumMarquee.Enabled = false;
                         albumLinkLabel.Location = albumLLoc;
@@ -445,9 +440,18 @@ namespace SpotifyAPI.Example
 
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
+        //private void timeProgressBar_Click(object sender, TrackTimeChangeEventArgs e)
+        //{
+            // Get mouse position(x) minus the width of the progressbar (so beginning of the progressbar is mousepos = 0 //
+        //    float absoluteMouse = (PointToClient(MousePosition).X - timeProgressBar.Bounds.X);
+            // Calculate the factor for converting the position (progbarWidth/100) //
+        //    float calcFactor = timeProgressBar.Width / (float)100;
+            // In the end convert the absolute mouse value to a relative mouse value by dividing the absolute mouse by the calcfactor //
+        //    float relativeMouse = absoluteMouse / calcFactor;
 
-        }
+            // Set the calculated relative value to the progressbar //
+        //    e.TrackTime = Convert.ToInt32(relativeMouse);
+        //    timeProgressBar.Value = Convert.ToInt32(relativeMouse);
+        //}
     }
 }

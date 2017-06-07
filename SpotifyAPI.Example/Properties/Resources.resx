@@ -118,17 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="exit1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="exit2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exit2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="exit21" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exit2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,35 +136,17 @@
   <data name="next2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\next2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="next3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\next3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="nextBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\nextBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="pause1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pause1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pause2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pause2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pause3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pause3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pauseBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pauseBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="play1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="play2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="play3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="playBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\playBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,14 +160,23 @@
   <data name="prev2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\prev2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="prev3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\prev3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="resize1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resize1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="prevBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\prevBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="resize1old" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resize1old.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resize2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resize2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="spotify__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\spotify (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="volume0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\volume0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="volume01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\volume01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="volume02" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\volume02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

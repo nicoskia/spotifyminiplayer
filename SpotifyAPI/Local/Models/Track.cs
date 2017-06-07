@@ -66,7 +66,6 @@ namespace SpotifyAPI.Local.Models
             string raw;
             using (WebClient wc = new WebClient())
             {
-                wc.Proxy = null;
                 raw = wc.DownloadString("http://open.spotify.com/album/" + AlbumResource.Uri.Split(new[] { ":" }, StringSplitOptions.None)[2]);
             }
             raw = raw.Replace("\t", "");
@@ -99,11 +98,10 @@ namespace SpotifyAPI.Local.Models
         {
             using (WebClient wc = new WebClient())
             {
-                wc.Proxy = null;
                 string url = GetAlbumArtUrl(size);
                 if (url == "")
                     return null;
-                var data = await wc.DownloadDataTaskAsync(url);
+                var data = await wc.DownloadDataTaskAsync(url).ConfigureAwait(false);
                 using (MemoryStream ms = new MemoryStream(data))
                 {
                     return (Bitmap)Image.FromStream(ms);
@@ -116,15 +114,14 @@ namespace SpotifyAPI.Local.Models
         /// </summary>
         /// <param name="size">AlbumArtSize (160,320,640)</param>
         /// <returns>A byte[], which is the albumart in binary data</returns>
-        public async Task<byte[]> GetAlbumArtAsByteArrayAsync(AlbumArtSize size)
+        public Task<byte[]> GetAlbumArtAsByteArrayAsync(AlbumArtSize size)
         {
             using (WebClient wc = new WebClient())
             {
-                wc.Proxy = null;
                 string url = GetAlbumArtUrl(size);
                 if (url == "")
                     return null;
-                return await wc.DownloadDataTaskAsync(url);
+                return wc.DownloadDataTaskAsync(url);
             }
         }
 
@@ -137,7 +134,6 @@ namespace SpotifyAPI.Local.Models
         {
             using (WebClient wc = new WebClient())
             {
-                wc.Proxy = null;
                 string url = GetAlbumArtUrl(size);
                 if (string.IsNullOrEmpty(url))
                     return null;
@@ -158,7 +154,6 @@ namespace SpotifyAPI.Local.Models
         {
             using (WebClient wc = new WebClient())
             {
-                wc.Proxy = null;
                 string url = GetAlbumArtUrl(size);
                 if (string.IsNullOrEmpty(url))
                     return null;

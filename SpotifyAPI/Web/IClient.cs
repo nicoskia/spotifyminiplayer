@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using SpotifyAPI.Web.Models;
 
 namespace SpotifyAPI.Web
 {
@@ -13,45 +15,51 @@ namespace SpotifyAPI.Web
         ///     Downloads data from an URL and returns it
         /// </summary>
         /// <param name="url">An URL</param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        string Download(string url);
+        Tuple<ResponseInfo, string> Download(string url, Dictionary<string, string> headers = null);
 
         /// <summary>
         ///     Downloads data async from an URL and returns it
         /// </summary>
         /// <param name="url"></param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        Task<string> DownloadAsync(string url);
+        Task<Tuple<ResponseInfo, string>> DownloadAsync(string url, Dictionary<string, string> headers = null);
 
         /// <summary>
         ///     Downloads data from an URL and returns it
         /// </summary>
         /// <param name="url">An URL</param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        byte[] DownloadRaw(string url);
+        Tuple<ResponseInfo, byte[]> DownloadRaw(string url, Dictionary<string, string> headers = null);
 
         /// <summary>
         ///     Downloads data async from an URL and returns it
         /// </summary>
         /// <param name="url"></param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        Task<byte[]> DownloadRawAsync(string url);
+        Task<Tuple<ResponseInfo, byte[]>> DownloadRawAsync(string url, Dictionary<string, string> headers = null);
 
         /// <summary>
         ///     Downloads data from an URL and converts it to an object
         /// </summary>
         /// <typeparam name="T">The Type which the object gets converted to</typeparam>
         /// <param name="url">An URL</param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        T DownloadJson<T>(string url);
+        Tuple<ResponseInfo, T> DownloadJson<T>(string url, Dictionary<string, string> headers = null);
 
         /// <summary>
         ///     Downloads data async from an URL and converts it to an object
         /// </summary>
         /// <typeparam name="T">The Type which the object gets converted to</typeparam>
         /// <param name="url">An URL</param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        Task<T> DownloadJsonAsync<T>(string url);
+        Task<Tuple<ResponseInfo, T>> DownloadJsonAsync<T>(string url, Dictionary<string, string> headers = null);
 
         /// <summary>
         ///     Uploads data from an URL and returns the response
@@ -59,8 +67,9 @@ namespace SpotifyAPI.Web
         /// <param name="url">An URL</param>
         /// <param name="body">The Body-Data (most likely a JSON String)</param>
         /// <param name="method">The Upload-method (POST,DELETE,PUT)</param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        string Upload(string url, string body, string method);
+        Tuple<ResponseInfo, string> Upload(string url, string body, string method, Dictionary<string, string> headers = null);
 
         /// <summary>
         ///     Uploads data async from an URL and returns the response
@@ -68,8 +77,9 @@ namespace SpotifyAPI.Web
         /// <param name="url">An URL</param>
         /// <param name="body">The Body-Data (most likely a JSON String)</param>
         /// <param name="method">The Upload-method (POST,DELETE,PUT)</param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        Task<string> UploadAsync(string url, string body, string method);
+        Task<Tuple<ResponseInfo, string>> UploadAsync(string url, string body, string method, Dictionary<string, string> headers = null);
 
         /// <summary>
         ///     Uploads data from an URL and returns the response
@@ -77,8 +87,9 @@ namespace SpotifyAPI.Web
         /// <param name="url">An URL</param>
         /// <param name="body">The Body-Data (most likely a JSON String)</param>
         /// <param name="method">The Upload-method (POST,DELETE,PUT)</param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        byte[] UploadRaw(string url, string body, string method);
+        Tuple<ResponseInfo, byte[]> UploadRaw(string url, string body, string method, Dictionary<string, string> headers = null);
 
         /// <summary>
         ///     Uploads data async from an URL and returns the response
@@ -86,8 +97,9 @@ namespace SpotifyAPI.Web
         /// <param name="url">An URL</param>
         /// <param name="body">The Body-Data (most likely a JSON String)</param>
         /// <param name="method">The Upload-method (POST,DELETE,PUT)</param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        Task<byte[]> UploadRawAsync(string url, string body, string method);
+        Task<Tuple<ResponseInfo, byte[]>> UploadRawAsync(string url, string body, string method, Dictionary<string, string> headers = null);
 
         /// <summary>
         ///     Uploads data from an URL and converts the response to an object
@@ -96,8 +108,9 @@ namespace SpotifyAPI.Web
         /// <param name="url">An URL</param>
         /// <param name="body">The Body-Data (most likely a JSON String)</param>
         /// <param name="method">The Upload-method (POST,DELETE,PUT)</param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        T UploadJson<T>(string url, string body, string method);
+        Tuple<ResponseInfo, T> UploadJson<T>(string url, string body, string method, Dictionary<string, string> headers = null);
 
         /// <summary>
         ///     Uploads data async from an URL and converts the response to an object
@@ -106,26 +119,8 @@ namespace SpotifyAPI.Web
         /// <param name="url">An URL</param>
         /// <param name="body">The Body-Data (most likely a JSON String)</param>
         /// <param name="method">The Upload-method (POST,DELETE,PUT)</param>
+        /// <param name="headers"></param>
         /// <returns></returns>
-        Task<T> UploadJsonAsync<T>(string url, string body, string method);
-
-        /// <summary>
-        ///     Sets a specific Header
-        /// </summary>
-        /// <param name="header">Header name</param>
-        /// <param name="value">Header value</param>
-        void SetHeader(string header, string value);
-
-        /// <summary>
-        ///     Removes a specific Header
-        /// </summary>
-        /// <param name="header">Header name</param>
-        void RemoveHeader(string header);
-
-        /// <summary>
-        ///     Gets all current Headers
-        /// </summary>
-        /// <returns>A collection of Header KeyValue Pairs</returns>
-        List<KeyValuePair<string, string>> GetHeaders();
+        Task<Tuple<ResponseInfo, T>> UploadJsonAsync<T>(string url, string body, string method, Dictionary<string, string> headers = null);
     }
 }

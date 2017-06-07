@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Net;
 
 namespace SpotifyAPI.Web.Models
 {
@@ -8,9 +9,16 @@ namespace SpotifyAPI.Web.Models
         [JsonProperty("error")]
         public Error Error { get; set; }
 
-        public Boolean HasError()
-        {
-            return Error != null;
-        }
+        private ResponseInfo _info;
+
+        public bool HasError() => Error != null;
+
+        internal void AddResponseInfo(ResponseInfo info) => _info = info;
+
+        public string Header(string key) => _info.Headers?.Get(key);
+
+        public WebHeaderCollection Headers() => _info.Headers;
+
+        public HttpStatusCode StatusCode() => _info.StatusCode;
     }
 }

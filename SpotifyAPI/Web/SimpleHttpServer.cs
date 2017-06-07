@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 
 // offered to the public domain for any use with no restriction
@@ -15,96 +19,79 @@ using System.Web;
 
 namespace SpotifyAPI.Web
 {
-    public class HttpProcessor
+    public class HttpProcessor : IDisposable
     {
         private const int MaxPostSize = 10 * 1024 * 1024; // 10MB
         private const int BufSize = 4096;
-        private readonly TcpClient _socket;
         private readonly HttpServer _srv;
         private Stream _inputStream;
-        public Hashtable HttpHeaders = new Hashtable();
-        public string HttpMethod;
+        private readonly Hashtable _httpHeaders = new Hashtable();
+        private string _httpMethod;
         public string HttpProtocolVersionstring;
         public string HttpUrl;
         public StreamWriter OutputStream;
 
-        public HttpProcessor(TcpClient s, HttpServer srv)
+        public HttpProcessor(HttpServer srv)
         {
-            _socket = s;
             _srv = srv;
         }
 
-        private string StreamReadLine(Stream inputStream)
+        private string[] GetIncomingRequest(Stream inputStream)
         {
-            string data = "";
-            while (true)
-            {
-                var nextChar = inputStream.ReadByte();
-                if (nextChar == '\n')
-                {
-                    break;
-                }
-                if (nextChar == '\r')
-                {
-                    continue;
-                }
-                if (nextChar == -1)
-                {
-                    Thread.Sleep(1);
-                    continue;
-                }
-                data += Convert.ToChar(nextChar);
-            }
-            return data;
+            var buffer = new byte[4096];
+            var read = inputStream.Read(buffer, 0, buffer.Length);
+
+            var inputData = Encoding.ASCII.GetString(buffer.Take(read).ToArray());
+            return inputData.Split('\n').Select(s => s.Trim()).Where(s => !string.IsNullOrEmpty(s)).ToArray();
         }
 
-        public void Process()
+        public void Process(TcpClient socket)
         {
             // we can't use a StreamReader for input, because it buffers up extra data on us inside it's
             // "processed" view of the world, and we want the data raw after the headers
-            _inputStream = new BufferedStream(_socket.GetStream());
+            _inputStream = new BufferedStream(socket.GetStream());
 
             // we probably shouldn't be using a streamwriter for all output from handlers either
-            OutputStream = new StreamWriter(new BufferedStream(_socket.GetStream()));
+            OutputStream = new StreamWriter(new BufferedStream(socket.GetStream()));
             try
             {
-                ParseRequest();
-                ReadHeaders();
-                if (HttpMethod.Equals("GET"))
+                var requestLines = GetIncomingRequest(_inputStream);
+
+                ParseRequest(requestLines.First());
+                ReadHeaders(requestLines.Skip(1));
+
+                if (_httpMethod.Equals("GET"))
                 {
                     HandleGetRequest();
                 }
-                else if (HttpMethod.Equals("POST"))
+                else if (_httpMethod.Equals("POST"))
                 {
                     HandlePostRequest();
                 }
             }
-            catch
+            catch (Exception)
             {
                 WriteFailure();
             }
             OutputStream.Flush();
             _inputStream = null;
             OutputStream = null;
-            _socket.Close();
         }
 
-        public void ParseRequest()
+        public void ParseRequest(string request)
         {
-            string request = StreamReadLine(_inputStream);
             string[] tokens = request.Split(' ');
             if (tokens.Length < 2)
             {
                 throw new Exception("Invalid HTTP request line");
             }
-            HttpMethod = tokens[0].ToUpper();
+            _httpMethod = tokens[0].ToUpper();
             HttpUrl = tokens[1];
         }
 
-        public void ReadHeaders()
+        public void ReadHeaders(IEnumerable<string> requestLines)
         {
-            string line;
-            while ((line = StreamReadLine(_inputStream)) != null)
+            foreach(var line in requestLines)
             {
                 if (string.IsNullOrEmpty(line))
                 {
@@ -124,7 +111,7 @@ namespace SpotifyAPI.Web
                 }
 
                 string value = line.Substring(pos, line.Length - pos);
-                HttpHeaders[name] = value;
+                _httpHeaders[name] = value;
             }
         }
 
@@ -142,9 +129,9 @@ namespace SpotifyAPI.Web
             // length, because otherwise he won't know when he's seen it all!
 
             MemoryStream ms = new MemoryStream();
-            if (HttpHeaders.ContainsKey("Content-Length"))
+            if (_httpHeaders.ContainsKey("Content-Length"))
             {
-                var contentLen = Convert.ToInt32(HttpHeaders["Content-Length"]);
+                var contentLen = Convert.ToInt32(_httpHeaders["Content-Length"]);
                 if (contentLen > MaxPostSize)
                 {
                     throw new Exception($"POST Content-Length({contentLen}) too big for this simple server");
@@ -184,6 +171,11 @@ namespace SpotifyAPI.Web
             OutputStream.WriteLine("Connection: close");
             OutputStream.WriteLine("");
         }
+
+        public void Dispose()
+        {
+
+        }
     }
 
     public abstract class HttpServer : IDisposable
@@ -212,20 +204,37 @@ namespace SpotifyAPI.Web
             {
                 _listener = new TcpListener(IPAddress.Any, Port);
                 _listener.Start();
-                while (IsActive)
-                {
-                    TcpClient s = _listener.AcceptTcpClient();
-                    HttpProcessor processor = new HttpProcessor(s, this);
-                    Thread thread = new Thread(processor.Process);
-                    thread.Start();
-                    Thread.Sleep(1);
-                }
+
+                _listener.BeginAcceptTcpClient(AcceptTcpConnection, _listener);
+
             }
             catch (SocketException e)
             {
                 if (e.ErrorCode != 10004) //Ignore 10004, which is thrown when the thread gets terminated
                     throw;
             }
+        }
+
+        private void AcceptTcpConnection(IAsyncResult ar)
+        {
+            TcpListener listener = (TcpListener)ar.AsyncState;
+            try
+            {
+                var tcpCLient = listener.EndAcceptTcpClient(ar);
+                using (HttpProcessor processor = new HttpProcessor(this))
+                {
+                    processor.Process(tcpCLient);
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                // Ignore
+            }
+
+            if (!IsActive)
+                return;
+            //listener.Start();
+            listener.BeginAcceptTcpClient(AcceptTcpConnection, listener);
         }
 
         public abstract void HandleGetRequest(HttpProcessor p);
@@ -306,6 +315,8 @@ namespace SpotifyAPI.Web
                                              "window.location = hashes" +
                                              "</script>" +
                                              "<h1>Spotify Auth successful!<br>Please copy the URL and paste it into the application</h1></body></html>");
+                    p.OutputStream.Flush();
+                    p.OutputStream.Close();
                     return;
                 }
                 string url = p.HttpUrl;
@@ -336,8 +347,12 @@ namespace SpotifyAPI.Web
                             State = col.Get(3)
                         });
                     });
+                    p.OutputStream.Flush();
+                    p.OutputStream.Close();
                 }
             }
+
+            
             t.Start();
         }
 

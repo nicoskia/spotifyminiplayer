@@ -4,11 +4,12 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace SpotifyAPI.Local
 {
-    public class SpotifyLocalAPI
+    public class SpotifyLocalAPI : IDisposable
     {
         [DllImport("user32.dll")]
         private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
@@ -49,7 +50,7 @@ namespace SpotifyAPI.Local
         private const int KeyeventfKeyup = 0x2;
 
         private readonly RemoteHandler _rh;
-        private readonly Timer _eventTimer;
+        private Timer _eventTimer;
         private StatusResponse _eventStatusResponse;
 
         public event EventHandler<TrackChangeEventArgs> OnTrackChange;
@@ -60,13 +61,17 @@ namespace SpotifyAPI.Local
 
         public event EventHandler<TrackTimeChangeEventArgs> OnTrackTimeChange;
 
-        public SpotifyLocalAPI()
+        public SpotifyLocalAPI(int timerIntervall = 50)
         {
             _rh = new RemoteHandler();
+            AttachTimer(timerIntervall);
+        }
 
+        private void AttachTimer(int intervall)
+        {
             _eventTimer = new Timer
             {
-                Interval = 50,
+                Interval = intervall,
                 AutoReset = false,
                 Enabled = false
             };
@@ -94,7 +99,7 @@ namespace SpotifyAPI.Local
             }
             if (newStatusResponse.Track != null && _eventStatusResponse.Track != null)
             {
-                if (newStatusResponse.Track.TrackResource?.Name != _eventStatusResponse.Track.TrackResource?.Name)
+                if (newStatusResponse.Track.TrackResource?.Uri != _eventStatusResponse.Track.TrackResource?.Uri)
                 {
                     OnTrackChange?.Invoke(this, new TrackChangeEventArgs()
                     {
@@ -230,17 +235,17 @@ namespace SpotifyAPI.Local
         /// <summary>
         /// Pause function
         /// </summary>
-        public void Pause()
+        public async Task Pause()
         {
-            _rh.SendPauseRequest();
+            await _rh.SendPauseRequest();
         }
 
         /// <summary>
         /// Play function
         /// </summary>
-        public void Play()
+        public async Task Play()
         {
-            _rh.SendPlayRequest();
+            await _rh.SendPlayRequest();
         }
 
         /// <summary>
@@ -261,9 +266,9 @@ namespace SpotifyAPI.Local
         /// <remarks>
         /// Contexts are basically a queue in spotify. a song can be played within a context, meaning that hitting next / previous would lead to another song. Contexts are leveraged by widgets as described in the "Multiple tracks player" section of the following documentation page: https://developer.spotify.com/technologies/widgets/spotify-play-button/
         /// </remarks>
-        public void PlayURL(string uri, string context = "")
+        public async Task PlayURL(string uri, string context = "")
         {
-            _rh.SendPlayRequest(uri, context);
+            await _rh.SendPlayRequest(uri, context);
         }
 
         /// <summary>
@@ -271,9 +276,9 @@ namespace SpotifyAPI.Local
         /// </summary>
         /// <param name="uri">The Spotify URI</param>
         [Obsolete("This method doesn't work with the current spotify version.")]
-        public void AddToQueue(string uri)
+        public async Task AddToQueue(string uri)
         {
-            _rh.SendQueueRequest(uri);
+            await _rh.SendQueueRequest(uri);
         }
 
         /// <summary>
@@ -332,6 +337,14 @@ namespace SpotifyAPI.Local
             {
                 Process.Start(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"spotify\spotifywebhelper.exe"));
             }
+        }
+
+        public void Dispose()
+        {
+            if (_eventTimer == null)
+                return;
+            _eventTimer.Enabled = false;
+            _eventTimer.Elapsed -= ElapsedTick;
         }
     }
 }

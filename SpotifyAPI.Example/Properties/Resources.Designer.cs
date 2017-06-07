@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SpotifyMiniPlayer.Properties {
+namespace SpotifyAPI.Example.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SpotifyMiniPlayer.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SpotifyMiniPlayer.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SpotifyAPI.Example.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,16 +63,6 @@ namespace SpotifyMiniPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exit {
-            get {
-                object obj = ResourceManager.GetObject("exit", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap exit1 {
             get {
                 object obj = ResourceManager.GetObject("exit1", resourceCulture);
@@ -86,16 +76,6 @@ namespace SpotifyMiniPlayer.Properties {
         internal static System.Drawing.Bitmap exit2 {
             get {
                 object obj = ResourceManager.GetObject("exit2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap exit21 {
-            get {
-                object obj = ResourceManager.GetObject("exit21", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,26 +123,6 @@ namespace SpotifyMiniPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap next3 {
-            get {
-                object obj = ResourceManager.GetObject("next3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap nextBig {
-            get {
-                object obj = ResourceManager.GetObject("nextBig", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap pause1 {
             get {
                 object obj = ResourceManager.GetObject("pause1", resourceCulture);
@@ -183,26 +143,6 @@ namespace SpotifyMiniPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pause3 {
-            get {
-                object obj = ResourceManager.GetObject("pause3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap pauseBig {
-            get {
-                object obj = ResourceManager.GetObject("pauseBig", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap play1 {
             get {
                 object obj = ResourceManager.GetObject("play1", resourceCulture);
@@ -216,26 +156,6 @@ namespace SpotifyMiniPlayer.Properties {
         internal static System.Drawing.Bitmap play2 {
             get {
                 object obj = ResourceManager.GetObject("play2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap play3 {
-            get {
-                object obj = ResourceManager.GetObject("play3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap playBig {
-            get {
-                object obj = ResourceManager.GetObject("playBig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,9 +203,9 @@ namespace SpotifyMiniPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prev3 {
+        internal static System.Drawing.Bitmap resize1 {
             get {
-                object obj = ResourceManager.GetObject("prev3", resourceCulture);
+                object obj = ResourceManager.GetObject("resize1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -293,9 +213,19 @@ namespace SpotifyMiniPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prevBig {
+        internal static System.Drawing.Bitmap resize1old {
             get {
-                object obj = ResourceManager.GetObject("prevBig", resourceCulture);
+                object obj = ResourceManager.GetObject("resize1old", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap resize2 {
+            get {
+                object obj = ResourceManager.GetObject("resize2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -306,6 +236,26 @@ namespace SpotifyMiniPlayer.Properties {
         internal static System.Drawing.Bitmap spotify__2_ {
             get {
                 object obj = ResourceManager.GetObject("spotify__2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap volume0 {
+            get {
+                object obj = ResourceManager.GetObject("volume0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap volume01 {
+            get {
+                object obj = ResourceManager.GetObject("volume01", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
