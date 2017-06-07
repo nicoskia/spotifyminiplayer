@@ -1,7 +1,7 @@
 # Spotify Mini-Player
 An amateur attempt at a Spotify Mini-Player for Windows!
 
-![screenshot](https://raw.githubusercontent.com/nicoskia/spotifyminiplayer/master/miniplayer.png)
+![screenshot](https://raw.githubusercontent.com/nicoskia/spotifyminiplayer/master/spotify.PNG)
 
 This application uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) for all Spotify related operations.
 
