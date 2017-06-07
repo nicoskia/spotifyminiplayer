@@ -1,11 +1,7 @@
 # Spotify Mini-Player
-A first-draft attempt at a Spotify Mini-Player for Windows!
+An amateur attempt at a Spotify Mini-Player for Windows!
 
 ![screenshot](https://raw.githubusercontent.com/nicoskia/spotifyminiplayer/master/miniplayer.png)
-
-Download the installer here: https://github.com/nicoskia/spotifyminiplayer/releases
-
-**Note:** You have to "install" it, but it's simply creating a local copy of the instructions it needs to grab information from Spotify.
 
 This application uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) for all Spotify related operations.
 
@@ -15,7 +11,6 @@ This application uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI
 * Mini-player is always on top 
 * View album art and song duration
 * Song/Artist/Album links to Spotify
-* Runs in the system tray - no taskbar icon clutter!
 
 ## Notice
 This is **not** a Spotify replacement. You need both running at the same time.
