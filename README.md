@@ -11,6 +11,7 @@ This application uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI
 * Mini-player is always on top 
 * View album art and song duration
 * Song/Artist/Album links to Spotify
+* **Coming Soon:** Add a song to your Saved Songs via the Mini-Player
 
 ## Notice
 This is **not** a Spotify replacement. You need both running at the same time.
