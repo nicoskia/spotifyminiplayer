@@ -80,6 +80,14 @@ namespace SpotifyAPI.Example
 
         public void UpdateInfos()
         {
+            titleLinkLabel.Location = trackLLoc;
+            trackRight.Location = trackRLoc;
+            artistLinkLabel.Location = artistLLoc;
+            artistRight.Location = artistRLoc;
+            albumLinkLabel.Location = albumLLoc;
+            albumRight.Location = albumRLoc;
+
+
             StatusResponse status = _spotify.GetStatus();
             if (status == null)
                 return;
@@ -101,36 +109,41 @@ namespace SpotifyAPI.Example
             {
                 btnPlayPause.Image = SpotifyAPI.Example.Properties.Resources.play1;
             }
+
+       
         }
 
         public async void UpdateTrack(Track track)
         {
             _currentTrack = track;
 
-            advertLabel.Text = track.IsAd() ? "ADVERT" : "";
+            //advertLabel.Text = track.IsAd() ? "ADVERT" : "";
             timeProgressBar.Maximum = track.Length;
 
             if (track.IsAd())
                 return; //Don't process further, maybe null values
 
-            titleLinkLabel.Text = track.TrackResource.Name;
+            titleLinkLabel.Text = track.TrackResource.Name;            
             titleLinkLabel.Tag = track.TrackResource.Uri;
-            trackRight.UseMnemonic = false;
             trackRight.Text = track.TrackResource.Name;
             trackRight.Tag = track.TrackResource.Uri;
+            titleLinkLabel.UseMnemonic = false;
+            trackRight.UseMnemonic = false;
 
             artistLinkLabel.Text = track.ArtistResource.Name;
             artistLinkLabel.Tag = track.ArtistResource.Uri;
-            artistRight.UseMnemonic = false;
             artistRight.Text = track.ArtistResource.Name;
             artistRight.Tag = track.ArtistResource.Uri;
+            artistLinkLabel.UseMnemonic = false;
+            artistRight.UseMnemonic = false;
 
 
             albumLinkLabel.Text = track.AlbumResource.Name;
             albumLinkLabel.Tag = track.AlbumResource.Uri;
-            albumRight.UseMnemonic = false;
             albumRight.Text = track.AlbumResource.Name;
             albumRight.Tag = track.AlbumResource.Uri;
+            albumLinkLabel.UseMnemonic = false;
+            albumRight.UseMnemonic = false;
 
             SpotifyUri uri = track.TrackResource.ParseUri();
 
@@ -155,6 +168,7 @@ namespace SpotifyAPI.Example
             //volumeLabel.Text = (e.NewVolume * 100).ToString(CultureInfo.InvariantCulture);
         }
 
+
         private void _spotify_OnTrackTimeChange(object sender, TrackTimeChangeEventArgs e)
         {
             if (InvokeRequired)
@@ -166,7 +180,18 @@ namespace SpotifyAPI.Example
             timeLeft.Text = $@"{FormatTime(e.TrackTime)}";
             if(e.TrackTime < _currentTrack.Length)
                 timeProgressBar.Value = (int)e.TrackTime;
+            
         }
+
+    //    private async void timeProgressBar_Scroll(object sender, EventArgs e)
+    //    {
+    //        string timeVal = $@"{FormatTime(timeProgressBar.Value)}";
+    //        string timeURL = _currentTrack.TrackResource.Uri + "%23" + timeVal;
+    //        timeLeft.Text = timeVal;
+    //        //Works, but since we call the track URI it brings us to the track in the album, not the currently playing track 
+    //        //await _spotify.PlayURL(timeURL);
+    //        
+    //    }
 
         private void _spotify_OnTrackChange(object sender, TrackChangeEventArgs e)
         {
@@ -189,11 +214,6 @@ namespace SpotifyAPI.Example
             UpdatePlayingStatus(e.Playing);
             UpdateInfos();
         }
-
-        //private async void playUrlBtn_Click(object sender, EventArgs e)
-        //{
-        //    await _spotify.PlayURL(playTextBox.Text, contextTextBox.Text);
-        //}
 
         private void btnExit_MouseEnter(object sender, EventArgs e)
         {
@@ -284,6 +304,8 @@ namespace SpotifyAPI.Example
             trackRight.Location = trackRLoc;
             albumLinkLabel.Location = albumLLoc;
             albumRight.Location = albumRLoc;
+            artistLinkLabel.Location = artistLLoc;
+            artistRight.Location = artistRLoc;
         }
 
         private void prevBtn_MouseEnter(object sender, EventArgs e)
@@ -329,7 +351,7 @@ namespace SpotifyAPI.Example
         private void titleMarquee_Tick(object sender, EventArgs e)
         {
             //if text width is larger than mini-player
-            if (titleLinkLabel.Width > 145)
+            if (titleLinkLabel.Width > 149)
             {
                 titleLinkLabel.Location = new Point(titleLinkLabel.Location.X - 1, titleLinkLabel.Location.Y);
                 //start scrolling
@@ -356,7 +378,7 @@ namespace SpotifyAPI.Example
 
         private void artistMarquee_Tick(object sender, EventArgs e)
         {
-            //if text width is larger than mini-playe
+            //if text width is larger than mini-player
             if (artistLinkLabel.Width > 150)
             {
                 artistLinkLabel.Location = new Point(artistLinkLabel.Location.X - 1, artistLinkLabel.Location.Y);
@@ -364,12 +386,12 @@ namespace SpotifyAPI.Example
                 //when right edge of text moves far enough, start scrolling new text
                 if (artistLinkLabel.Right <= 250)
                 {
-                    albumRight.Location = new Point(albumRight.Location.X - 1, albumRight.Location.Y);
-                    if (albumRight.Left <= 86)
+                    artistRight.Location = new Point(artistRight.Location.X - 1, artistRight.Location.Y);
+                    if (artistRight.Left <= 86)
                     {
                         artistMarquee.Enabled = false;
                         artistLinkLabel.Location = artistLLoc;
-                        albumRight.Location = artistRLoc;
+                        artistRight.Location = artistRLoc;
                     }
                 }
                 //if text fits, quit
@@ -440,18 +462,9 @@ namespace SpotifyAPI.Example
 
         }
 
-        //private void timeProgressBar_Click(object sender, TrackTimeChangeEventArgs e)
-        //{
-            // Get mouse position(x) minus the width of the progressbar (so beginning of the progressbar is mousepos = 0 //
-        //    float absoluteMouse = (PointToClient(MousePosition).X - timeProgressBar.Bounds.X);
-            // Calculate the factor for converting the position (progbarWidth/100) //
-        //    float calcFactor = timeProgressBar.Width / (float)100;
-            // In the end convert the absolute mouse value to a relative mouse value by dividing the absolute mouse by the calcfactor //
-        //    float relativeMouse = absoluteMouse / calcFactor;
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
 
-            // Set the calculated relative value to the progressbar //
-        //    e.TrackTime = Convert.ToInt32(relativeMouse);
-        //    timeProgressBar.Value = Convert.ToInt32(relativeMouse);
-        //}
+        }
     }
 }

@@ -15,3 +15,54 @@ C:\Users\nicoskad\Documents\MiniPlayer17\SpotifyAPI.Example\obj\Debug\SpotifyAPI
 C:\Users\nicoskad\Documents\MiniPlayer17\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.csproj.GenerateResource.Cache
 C:\Users\nicoskad\Documents\MiniPlayer17\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.exe
 C:\Users\nicoskad\Documents\MiniPlayer17\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.pdb
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.exe.config
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.exe
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.pdb
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.dll
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\bin\Debug\Newtonsoft.Json.dll
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.pdb
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.xml
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.dll.config
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\bin\Debug\Newtonsoft.Json.xml
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.csprojResolveAssemblyReference.cache
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.ExampleForm.resources
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.LocalControl.resources
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.Properties.Resources.resources
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.WebControl.resources
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.csproj.GenerateResource.Cache
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.exe
+C:\Users\nicoskad\Documents\MiniPlayer17 v2.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.pdb
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.exe.config
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.exe
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.pdb
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.dll
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\bin\Debug\Newtonsoft.Json.dll
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.pdb
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.xml
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\bin\Debug\SpotifyAPI.dll.config
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\bin\Debug\Newtonsoft.Json.xml
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.csprojResolveAssemblyReference.cache
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.ExampleForm.resources
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.LocalControl.resources
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.Properties.Resources.resources
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.WebControl.resources
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.csproj.GenerateResource.Cache
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.exe
+C:\Users\nicoskad\Documents\MiniPlayer17 v3.0\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.pdb
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.exe.config
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.exe
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\bin\Debug\SpotifyAPI.Example.pdb
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\bin\Debug\SpotifyAPI.dll
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\bin\Debug\Newtonsoft.Json.dll
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\bin\Debug\SpotifyAPI.pdb
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\bin\Debug\SpotifyAPI.xml
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\bin\Debug\SpotifyAPI.dll.config
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\bin\Debug\Newtonsoft.Json.xml
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.csprojResolveAssemblyReference.cache
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.ExampleForm.resources
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.LocalControl.resources
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.Properties.Resources.resources
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.WebControl.resources
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.csproj.GenerateResource.Cache
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.exe
+C:\Users\nicoskad\Documents\test\SpotifyAPI.Example\obj\Debug\SpotifyAPI.Example.pdb

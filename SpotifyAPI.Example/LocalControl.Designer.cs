@@ -33,7 +33,6 @@
             this.artistLinkLabel = new System.Windows.Forms.LinkLabel();
             this.albumLinkLabel = new System.Windows.Forms.LinkLabel();
             this.smallAlbumPicture = new System.Windows.Forms.PictureBox();
-            this.timeProgressBar = new System.Windows.Forms.ProgressBar();
             this.timeLeft = new System.Windows.Forms.Label();
             this.advertLabel = new System.Windows.Forms.Label();
             this.isPlayingLabel = new System.Windows.Forms.Label();
@@ -51,6 +50,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.saveBtn = new System.Windows.Forms.PictureBox();
+            this.timeProgressBar = new System.Windows.Forms.ProgressBar();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.smallAlbumPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prevBtn)).BeginInit();
@@ -59,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.saveBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // titleLinkLabel
@@ -128,19 +130,6 @@
             this.smallAlbumPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.smallAlbumPicture.TabIndex = 5;
             this.smallAlbumPicture.TabStop = false;
-            // 
-            // timeProgressBar
-            // 
-            this.timeProgressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.timeProgressBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(214)))), ((int)(((byte)(96)))));
-            this.timeProgressBar.Location = new System.Drawing.Point(30, 106);
-            this.timeProgressBar.Margin = new System.Windows.Forms.Padding(4);
-            this.timeProgressBar.MarqueeAnimationSpeed = 0;
-            this.timeProgressBar.Name = "timeProgressBar";
-            this.timeProgressBar.Size = new System.Drawing.Size(200, 7);
-            this.timeProgressBar.Step = 5;
-            this.timeProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.timeProgressBar.TabIndex = 43;
             // 
             // timeLeft
             // 
@@ -333,15 +322,39 @@
             this.saveBtn.MouseEnter += new System.EventHandler(this.saveBtn_MouseEnter);
             this.saveBtn.MouseLeave += new System.EventHandler(this.saveBtn_MouseLeave);
             // 
+            // timeProgressBar
+            // 
+            this.timeProgressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.timeProgressBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(214)))), ((int)(((byte)(96)))));
+            this.timeProgressBar.Location = new System.Drawing.Point(37, 106);
+            this.timeProgressBar.Margin = new System.Windows.Forms.Padding(4);
+            this.timeProgressBar.MarqueeAnimationSpeed = 0;
+            this.timeProgressBar.Name = "timeProgressBar";
+            this.timeProgressBar.Size = new System.Drawing.Size(190, 7);
+            this.timeProgressBar.Step = 5;
+            this.timeProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.timeProgressBar.TabIndex = 62;
+            this.timeProgressBar.Click += new System.EventHandler(this.progressBar1_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(55, 2);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(34, 91);
+            this.pictureBox3.TabIndex = 63;
+            this.pictureBox3.TabStop = false;
+            // 
             // LocalControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.Controls.Add(this.smallAlbumPicture);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.timeProgressBar);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.smallAlbumPicture);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.albumRight);
             this.Controls.Add(this.artistRight);
@@ -353,7 +366,6 @@
             this.Controls.Add(this.isPlayingLabel);
             this.Controls.Add(this.advertLabel);
             this.Controls.Add(this.timeLeft);
-            this.Controls.Add(this.timeProgressBar);
             this.Controls.Add(this.albumLinkLabel);
             this.Controls.Add(this.artistLinkLabel);
             this.Controls.Add(this.titleLinkLabel);
@@ -372,6 +384,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.saveBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,7 +395,6 @@
         private System.Windows.Forms.LinkLabel artistLinkLabel;
         private System.Windows.Forms.LinkLabel albumLinkLabel;
         private System.Windows.Forms.PictureBox smallAlbumPicture;
-        private System.Windows.Forms.ProgressBar timeProgressBar;
         private System.Windows.Forms.Label timeLeft;
         private System.Windows.Forms.Label advertLabel;
         private System.Windows.Forms.Label isPlayingLabel;
@@ -400,5 +412,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox saveBtn;
+        private System.Windows.Forms.ProgressBar timeProgressBar;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

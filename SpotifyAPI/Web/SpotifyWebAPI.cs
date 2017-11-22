@@ -1781,6 +1781,28 @@ namespace SpotifyAPI.Web
         }
 
         /// <summary>
+        ///     Get a detailed audio analysis for a single track identified by its unique Spotify ID.
+        /// </summary>
+        /// <param name="id">The Spotify ID for the track.</param>
+        /// <returns></returns>
+        /// <remarks>AUTH NEEDED</remarks>
+        public AudioAnalysis GetAudioAnalysis(string id)
+        {
+            return DownloadData<AudioAnalysis>(_builder.GetAudioAnalysis(id));
+        }
+
+        /// <summary>
+        ///     Get a detailed audio analysis for a single track identified by its unique Spotify ID asynchronously.
+        /// </summary>
+        /// <param name="id">The Spotify ID for the track.</param>
+        /// <returns></returns>
+        /// <remarks>AUTH NEEDED</remarks>
+        public Task<AudioAnalysis> GetAudioAnalysisAsync(string id)
+        {
+            return DownloadDataAsync<AudioAnalysis>(_builder.GetAudioAnalysis(id));
+        }
+
+        /// <summary>
         ///     Get audio feature information for a single track identified by its unique Spotify ID.
         /// </summary>
         /// <param name="id">The Spotify ID for the track.</param>
@@ -1952,7 +1974,7 @@ namespace SpotifyAPI.Web
         /// <returns></returns>
         public ErrorResponse SeekPlayback(int positionMs, string deviceId = "")
         {
-            return UploadData<ErrorResponse>(_builder.SeekPlayback(positionMs, deviceId), string.Empty);
+            return UploadData<ErrorResponse>(_builder.SeekPlayback(positionMs, deviceId), string.Empty, "PUT");
         }
 
         /// <summary>
@@ -1963,7 +1985,7 @@ namespace SpotifyAPI.Web
         /// <returns></returns>
         public ErrorResponse SetRepeatMode(RepeatState state, string deviceId = "")
         {
-            return UploadData<ErrorResponse>(_builder.SetRepeatMode(state, deviceId), string.Empty);
+            return UploadData<ErrorResponse>(_builder.SetRepeatMode(state, deviceId), string.Empty, "PUT");
         }
 
         /// <summary>
@@ -1974,7 +1996,7 @@ namespace SpotifyAPI.Web
         /// <returns></returns>
         public ErrorResponse SetVolume(int volumePercent, string deviceId = "")
         {
-            return UploadData<ErrorResponse>(_builder.SetVolume(volumePercent, deviceId), string.Empty);
+            return UploadData<ErrorResponse>(_builder.SetVolume(volumePercent, deviceId), string.Empty, "PUT");
         }
 
         /// <summary>
@@ -1985,7 +2007,7 @@ namespace SpotifyAPI.Web
         /// <returns></returns>
         public ErrorResponse SetShuffle(bool shuffle, string deviceId = "")
         {
-            return UploadData<ErrorResponse>(_builder.SetShuffle(shuffle, deviceId), string.Empty);
+            return UploadData<ErrorResponse>(_builder.SetShuffle(shuffle, deviceId), string.Empty, "PUT");
         }
 
         #endregion

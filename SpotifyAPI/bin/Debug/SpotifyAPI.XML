@@ -169,6 +169,14 @@
             </summary>
             <returns>True, if it's running, false if not</returns>
         </member>
+        <member name="M:SpotifyAPI.Local.SpotifyLocalAPI.IsSpotifyInstalled">
+            <summary>
+            Determines whether [spotify is installed].
+            </summary>
+            <returns>
+              <c>true</c> if [spotify is installed]; otherwise, <c>false</c>.
+            </returns>
+        </member>
         <member name="M:SpotifyAPI.Local.SpotifyLocalAPI.RunSpotify">
             <summary>
             Runs Spotify
@@ -217,6 +225,12 @@
         <member name="M:SpotifyAPI.Web.Auth.ClientCredentialsAuth.DoAuth">
             <summary>
                 Starts the auth process and
+            </summary>
+            <returns>A new Token</returns>
+        </member>
+        <member name="M:SpotifyAPI.Web.Auth.ClientCredentialsAuth.DoAuthAsync">
+            <summary>
+                Starts the auth process async and
             </summary>
             <returns>A new Token</returns>
         </member>
@@ -1571,6 +1585,22 @@
             <param name="market">An ISO 3166-1 alpha-2 country code. Provide this parameter if you want to apply Track Relinking.</param>
             <returns></returns>
         </member>
+        <member name="M:SpotifyAPI.Web.SpotifyWebAPI.GetAudioAnalysis(System.String)">
+            <summary>
+                Get a detailed audio analysis for a single track identified by its unique Spotify ID.
+            </summary>
+            <param name="id">The Spotify ID for the track.</param>
+            <returns></returns>
+            <remarks>AUTH NEEDED</remarks>
+        </member>
+        <member name="M:SpotifyAPI.Web.SpotifyWebAPI.GetAudioAnalysisAsync(System.String)">
+            <summary>
+                Get a detailed audio analysis for a single track identified by its unique Spotify ID asynchronously.
+            </summary>
+            <param name="id">The Spotify ID for the track.</param>
+            <returns></returns>
+            <remarks>AUTH NEEDED</remarks>
+        </member>
         <member name="M:SpotifyAPI.Web.SpotifyWebAPI.GetAudioFeatures(System.String)">
             <summary>
                 Get audio feature information for a single track identified by its unique Spotify ID.
@@ -2207,6 +2237,14 @@
             <param name="id">The Spotify ID for the track.</param>
             <param name="market">An ISO 3166-1 alpha-2 country code. Provide this parameter if you want to apply Track Relinking.</param>
             <returns></returns>
+        </member>
+        <member name="M:SpotifyAPI.Web.SpotifyWebBuilder.GetAudioAnalysis(System.String)">
+            <summary>
+                Get a detailed audio analysis for a single track identified by its unique Spotify ID.
+            </summary>
+            <param name="id">The Spotify ID for the track.</param>
+            <returns></returns>
+            <remarks>AUTH NEEDED</remarks>
         </member>
         <member name="M:SpotifyAPI.Web.SpotifyWebBuilder.GetAudioFeatures(System.String)">
             <summary>
