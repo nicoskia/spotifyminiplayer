@@ -1,5 +1,5 @@
 # Spotify Mini-Player
-An amateur attempt at a Spotify Mini-Player for Windows!
+An amateur attempt at a Spotify Mini-Player for Windows! Visit the "Releases" tab at the top to find the latest installer.
 
 ![screenshot](https://raw.githubusercontent.com/nicoskia/spotifyminiplayer/master/spotify.PNG)
 
